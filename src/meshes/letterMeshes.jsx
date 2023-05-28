@@ -6,7 +6,7 @@ import { useThree, useFrame } from "@react-three/fiber";
 export function LetterJ(props) {
 
     const JMesh = React.useRef();
-    const {viewport} = useThree();
+    const { viewport } = useThree();
     const isFinished = useRef(false);
 
     const positionSpring = useSpring({
@@ -16,7 +16,7 @@ export function LetterJ(props) {
 
     const rotationSpring = useSpring({
         from: { rotation: [0, 0, 0] },
-        to: { rotation: [Math.PI/2, 0.6, 6] },
+        to: { rotation: [Math.PI / 2, 0.6, 6] },
         config: {
             mass: 2,
             tension: 200,
@@ -33,8 +33,8 @@ export function LetterJ(props) {
         },
     });
 
-    useFrame(({clock}) => {
-        if(!isFinished.current) {
+    useFrame(({ clock }) => {
+        if (!isFinished.current) {
             JMesh.current.rotation.z += Math.cos(clock.getElapsedTime()) * 0.0005;
             JMesh.current.rotation.y += Math.cos(clock.getElapsedTime()) * 0.0005;
             JMesh.current.position.y += Math.sin(clock.getElapsedTime()) * 0.0007;
@@ -42,7 +42,7 @@ export function LetterJ(props) {
 
         }
     })
-    
+
     const { nodes, materials } = useGLTF("assets/j.gltf");
     return (
         <group {...props} dispose={null}>
@@ -174,14 +174,14 @@ export function LetterS(props) {
 }
 
 export function LetterT(props) {
-    
+
     const TMesh = React.useRef();
     const { viewport } = useThree();
     const isFinished = useRef(false);
 
     const positionSpring = useSpring({
         from: { position: [0, 0, 0] },
-        to: { position: [viewport.width / 10, viewport.width / 10 , 0] },
+        to: { position: [viewport.width / 10, viewport.width / 10, 0] },
     });
 
     const rotationSpring = useSpring({
@@ -337,9 +337,9 @@ export function LetterN(props) {
     );
 }
 
-useGLTF.preload("assets/j.gltf");
-useGLTF.preload("assets/u.gltf");
-useGLTF.preload("assets/s.gltf");
-useGLTF.preload("assets/t.gltf");
-useGLTF.preload("assets/i.gltf");
-useGLTF.preload("assets/n.gltf");
+useGLTF.preload("assets/assets/j.gltf");
+useGLTF.preload("assets/assets/u.gltf");
+useGLTF.preload("assets/assets/s.gltf");
+useGLTF.preload("assets/assets/t.gltf");
+useGLTF.preload("assets/assets/i.gltf");
+useGLTF.preload("assets/assets/n.gltf");
