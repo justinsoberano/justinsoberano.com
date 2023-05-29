@@ -3,45 +3,58 @@ import { useGLTF } from "@react-three/drei";
 import { useSpring, animated } from "@react-spring/three";
 import { useThree, useFrame } from "@react-three/fiber";
 
-export function LetterJ(props) {
+const positionSpring = (pX, pY, pZ, newX, delay) => {
+    return new useSpring({ 
+        from: { position: [0, 0, 0] }, 
+        to: [
+            { position: [pX, pY, pZ] },
+            { position: [newX, 0, -3]}
+        ],
+        delay: delay,
+        config: { mass: 4, tension: 200, friction: 40, }
+    })
+}
 
-    const JMesh = React.useRef();
-    const { viewport } = useThree();
-    const isFinished = useRef(false);
-
-    const positionSpring = useSpring({
-        from: { position: [0, 0, 0] },
-        to: { position: [- viewport.width / 2.9, 0, 0] },
-    });
-
-    const rotationSpring = useSpring({
-        from: { rotation: [0, 0, 0] },
-        to: { rotation: [Math.PI / 2, 0.6, 6] },
-        config: {
-            mass: 2,
-            tension: 200,
-            friction: 50,
-        }
-    });
-    const scaleSpring = useSpring({
-        from: { scale: [[viewport.width / 100], [viewport.width / 100], [viewport.width / 100]] },
-        to: { scale: [[viewport.width / viewport.height], [viewport.width / viewport.height], [viewport.width / viewport.height]] },
-        config: {
-            mass: 2,
-            tension: 200,
-            friction: 50,
-        },
-    });
-
-    useFrame(({ clock }) => {
-        if (!isFinished.current) {
-            JMesh.current.rotation.z += Math.cos(clock.getElapsedTime()) * 0.0005;
-            JMesh.current.rotation.y += Math.cos(clock.getElapsedTime()) * 0.0005;
-            JMesh.current.position.y += Math.sin(clock.getElapsedTime()) * 0.0007;
-            // TODO: make the letters go up and down to add more motion
-
+const rotationSpring = (rX, rY, rZ, mass, tension, friction, delay) => {
+    return new useSpring({ 
+        from: { rotation: [0, 0, 0] }, 
+        to: [
+            { rotation: [rX, rY, rZ] },
+            { rotation: [Math.PI / 2, 0, 0] },
+        ],
+        delay: delay, 
+        config: { mass: mass, tension: tension, friction: friction,
         }
     })
+}
+const ScaleSpring = (delay) => {
+    const { viewport } = useThree();
+    const b = viewport.width / viewport.height;
+    const a = viewport.width / 100;
+    return new useSpring({ from: { scale: [a, a, a] }, to: { scale: [b, b, b] },
+        config: { mass: 2, tension: 200, friction: 50, },
+        delay: delay,
+    })
+}
+const FloatAnimation = (mesh, rZ, rY, pY, a, b, c, multiplier) => {
+    const rotationZ = rZ / 10000; 
+    const rotationY = rY / 10000; 
+    const positionY = pY / 10000;
+    return new useFrame(({ clock }) => {
+            mesh.current.rotation.z += a(clock.getElapsedTime()) * rotationZ;
+            mesh.current.rotation.y += b(clock.getElapsedTime()) * rotationY;
+            mesh.current.position.y += c(clock.getElapsedTime() * multiplier) * positionY;
+    })
+}
+
+export function LetterJ(props) {
+
+    const JMesh = useRef();
+    const { viewport } = useThree();
+    const positionAnimation = positionSpring(-viewport.width / 2.9, 0, 0,-viewport.width / 3.6 ,0);
+    const rotationAnimation = rotationSpring(Math.PI / 2, 0.6, 6, 3.5, 200, 50, 0);
+    const scale = ScaleSpring(0);
+    FloatAnimation(JMesh, 5, 5, 7, Math.cos, Math.sin, Math.sin, 1);
 
     const { nodes, materials } = useGLTF("assets/j.gltf");
     return (
@@ -51,10 +64,10 @@ export function LetterJ(props) {
                 receiveShadow
                 geometry={nodes.J.geometry}
                 material={materials["Light Blue Bubble Letter Material"]}
-                position={positionSpring.position}
-                rotation={rotationSpring.rotation}
+                position={positionAnimation.position}
+                rotation={rotationAnimation.rotation}
                 ref={JMesh}
-                scale={scaleSpring.scale}
+                scale={scale.scale}
             />
         </group>
     );
@@ -62,41 +75,12 @@ export function LetterJ(props) {
 
 export function LetterU(props) {
 
-    const UMesh = React.useRef();
+    const UMesh = useRef();
     const { viewport } = useThree();
-    const isFinished = useRef(false);
-
-    const positionSpring = useSpring({
-        from: { position: [0, 0, 0] },
-        to: { position: [- viewport.width / 5, -viewport.width / 5, 0] },
-    });
-
-    const rotationSpring = useSpring({
-        from: { rotation: [0, 0, 0] },
-        to: { rotation: [Math.PI / 2, 0.2, 6] },
-        config: {
-            mass: 4,
-            tension: 100,
-            friction: 50,
-        }
-    });
-    const scaleSpring = useSpring({
-        from: { scale: [[viewport.width / 100], [viewport.width / 100], [viewport.width / 100]] },
-        to: { scale: [[viewport.width / viewport.height], [viewport.width / viewport.height], [viewport.width / viewport.height]] },
-        config: {
-            mass: 2,
-            tension: 200,
-            friction: 50,
-        },
-    });
-
-    useFrame(({ clock }) => {
-        if (!isFinished.current) {
-            UMesh.current.rotation.z += Math.cos(clock.getElapsedTime()) * 0.0005;
-            UMesh.current.rotation.y += Math.cos(clock.getElapsedTime()) * 0.0005;
-            UMesh.current.position.y += Math.cos(clock.getElapsedTime()) * 0.0007;
-        }
-    })
+    const positionAnimation = positionSpring(-viewport.width / 5, -viewport.width / 5, 0, -viewport.width / 7, 100);  
+    const rotationAnimation = rotationSpring(Math.PI / 4, 0, 3, 3.5, 200, 50, 100);
+    const scale = ScaleSpring(100);
+    FloatAnimation(UMesh, 5, 7, 7, Math.cos, Math.cos, Math.cos, 0.7)
 
     const { nodes, materials } = useGLTF("assets/u.gltf");
     return (
@@ -106,9 +90,9 @@ export function LetterU(props) {
                 receiveShadow
                 geometry={nodes.U.geometry}
                 material={materials["Dark Brown Bubble Letter Material"]}
-                position={positionSpring.position}
-                rotation={rotationSpring.rotation}
-                scale={scaleSpring.scale}
+                position={positionAnimation.position}
+                rotation={rotationAnimation.rotation}
+                scale={scale.scale}
                 ref={UMesh}
             />
         </group>
@@ -117,44 +101,12 @@ export function LetterU(props) {
 
 export function LetterS(props) {
 
-    const SMesh = React.useRef();
+    const SMesh = useRef();
     const { viewport } = useThree();
-    const isFinished = useRef(false);
-
-    const positionSpring = useSpring({
-        from: { position: [0, 0, 0] },
-        to: { position: [- viewport.width / 15, viewport.width / 15, -0.5] },
-    });
-
-    const rotationSpring = useSpring({
-        from: { rotation: [0, 0, 0] },
-        to: { rotation: [Math.PI / 2, 0.2, 6] },
-        config: {
-            mass: 4,
-            tension: 100,
-            friction: 40,
-        }
-    });
-
-    const scaleSpring = useSpring({
-        from: { scale: [[viewport.width / 100], [viewport.width / 100], [viewport.width / 100]] },
-        to: { scale: [[viewport.width / viewport.height], [viewport.width / viewport.height], [viewport.width / viewport.height]] },
-        config: {
-            mass: 2,
-            tension: 200,
-            friction: 50,
-        },
-    });
-
-    useFrame(({ clock }) => {
-        if (!isFinished.current) {
-            SMesh.current.rotation.z += Math.cos(clock.getElapsedTime()) * 0.0005;
-            SMesh.current.rotation.y += Math.cos(clock.getElapsedTime()) * 0.0005;
-            SMesh.current.position.y += Math.cos(clock.getElapsedTime() * 0.6) * 0.001;
-            // TODO: make the letters go up and down to add more motion
-
-        }
-    })
+    const positionAnimation = positionSpring(-viewport.width / 15, viewport.width / 15, -0.5, -viewport.width / 30, 200);
+    const rotationAnimation = rotationSpring(Math.PI / 2, 0.2, 6, 4, 100, 40, 200);
+    const scale = ScaleSpring(200);
+    FloatAnimation(SMesh, 5, 5, 10, Math.cos, Math.cos, Math.cos, 0.6);
 
     const { nodes, materials } = useGLTF("assets/s.gltf");
     return (
@@ -164,9 +116,9 @@ export function LetterS(props) {
                 receiveShadow
                 geometry={nodes.S.geometry}
                 material={materials["Dark Green Bubble Letter Material"]}
-                position={positionSpring.position}
-                rotation={rotationSpring.rotation}
-                scale={scaleSpring.scale}
+                position={positionAnimation.position}
+                rotation={rotationAnimation.rotation}
+                scale={scale.scale}
                 ref={SMesh}
             />
         </group>
@@ -174,43 +126,13 @@ export function LetterS(props) {
 }
 
 export function LetterT(props) {
-
-    const TMesh = React.useRef();
+    const TMesh = useRef();
     const { viewport } = useThree();
-    const isFinished = useRef(false);
-
-    const positionSpring = useSpring({
-        from: { position: [0, 0, 0] },
-        to: { position: [viewport.width / 10, viewport.width / 10, 0] },
-    });
-
-    const rotationSpring = useSpring({
-        from: { rotation: [0, 0, 0] },
-        to: { rotation: [Math.PI / 2, 0.1, -6] },
-        config: {
-            mass: 4,
-            tension: 50,
-            friction: 20,
-        }
-    });
-
-    const scaleSpring = useSpring({
-        from: { scale: [[viewport.width / 100], [viewport.width / 100], [viewport.width / 100]] },
-        to: { scale: [[viewport.width / viewport.height], [viewport.width / viewport.height], [viewport.width / viewport.height]] },
-        config: {
-            mass: 2,
-            tension: 200,
-            friction: 50,
-        },
-    });
-
-    useFrame(({ clock }) => {
-        if (!isFinished.current) {
-            TMesh.current.rotation.x += Math.sin(clock.getElapsedTime()) * 0.0005;
-            TMesh.current.rotation.y += Math.sin(clock.getElapsedTime()) * 0.0005;
-            TMesh.current.position.y += Math.cos(clock.getElapsedTime() * 0.3) * 0.001;
-        }
-    })
+    const positionAnimation = positionSpring(viewport.width / 10, viewport.width / 10, 0, viewport.width / 15, 300);
+    /* Px, Py, Pz, mass, tension, friction, delay*/
+    const rotationAnimation = rotationSpring(Math.PI / 1.3, 0, 1, 2, 200, 50, 100);
+    const scale = ScaleSpring(200);
+    FloatAnimation(TMesh, 5, 5, 7, Math.sin, Math.sin, Math.cos, 0.3);
 
     const { nodes, materials } = useGLTF("assets/t.gltf");
     return (
@@ -220,9 +142,9 @@ export function LetterT(props) {
                 receiveShadow
                 geometry={nodes.T.geometry}
                 material={materials["Dark Yellow Bubble Letter Material"]}
-                position={positionSpring.position}
-                rotation={rotationSpring.rotation}
-                scale={scaleSpring.scale}
+                position={positionAnimation.position}
+                rotation={rotationAnimation.rotation}
+                scale={scale.scale}
                 ref={TMesh}
             />
         </group>
@@ -233,36 +155,11 @@ export function LetterI(props) {
 
     const IMesh = React.useRef();
     const { viewport } = useThree();
-    const isFinished = useRef(false);
-
-    const positionSpring = useSpring({
-        from: { position: [0, 0, 0] },
-        to: { position: [viewport.width / 5, -viewport.width / 8, 0] },
-    });
-
-    const rotationSpring = useSpring({
-        from: { rotation: [0, 0, 0] },
-        to: { rotation: [Math.PI / 2, 0.2, 6] },
-        config: { mass: 3, tension: 100, friction: 40 }
-    });
-
-    const scaleSpring = useSpring({
-        from: { scale: [[viewport.width / 100], [viewport.width / 100], [viewport.width / 100]] },
-        to: { scale: [[viewport.width / viewport.height], [viewport.width / viewport.height], [viewport.width / viewport.height]] },
-        config: {
-            mass: 2,
-            tension: 200,
-            friction: 50,
-        },
-    });
-
-    useFrame(({ clock }) => {
-        if (!isFinished.current) {
-            IMesh.current.rotation.x += Math.sin(clock.getElapsedTime()) * 0.0005;
-            IMesh.current.rotation.y += Math.sin(clock.getElapsedTime()) * 0.0005;
-            IMesh.current.position.y += Math.sin(clock.getElapsedTime() * 0.8) * 0.0005;
-        }
-    })
+    const positionAnimation = positionSpring(viewport.width / 5, -viewport.width / 8, 0, viewport.width / 6, 400);
+    /* Px, Py, Pz, mass, tension, friction, delay*/
+    const rotationAnimation = rotationSpring(Math.PI / 2, 0.2, 6, 3, 100, 40, 400);
+    const scale = ScaleSpring(300);
+    FloatAnimation(IMesh, 5, 5, 5, Math.sin, Math.sin, Math.sin, 0.8);
 
     const { nodes, materials } = useGLTF("assets/i.gltf");
     return (
@@ -272,9 +169,9 @@ export function LetterI(props) {
                 receiveShadow
                 geometry={nodes.I.geometry}
                 material={materials["Pink Bubble Letter Material"]}
-                position={positionSpring.position}
-                rotation={rotationSpring.rotation}
-                scale={scaleSpring.scale}
+                position={positionAnimation.position}
+                rotation={rotationAnimation.rotation}
+                scale={scale.scale}
                 ref={IMesh}
             />
         </group>
@@ -285,40 +182,10 @@ export function LetterN(props) {
 
     const NMesh = React.useRef();
     const { viewport } = useThree();
-    const isFinished = useRef(false);
-
-    const positionSpring = useSpring({
-        from: { position: [0, 0, 0] },
-        to: { position: [viewport.width / 3, 0.1, 0] },
-    });
-
-    const rotationSpring = useSpring({
-        from: { rotation: [0, 0, 0] },
-        to: { rotation: [Math.PI / 2, -0.3, 6.3] },
-        config: {
-            mass: 3,
-            tension: 100,
-            friction: 40,
-        }
-    });
-
-    const scaleSpring = useSpring({
-        from: { scale: [[viewport.width / 100], [viewport.width / 100], [viewport.width / 100]] },
-        to: { scale: [[viewport.width / viewport.height], [viewport.width / viewport.height], [viewport.width / viewport.height]] },
-        config: {
-            mass: 2,
-            tension: 200,
-            friction: 50,
-        },
-    });
-
-    useFrame(({ clock }) => {
-        if (!isFinished.current) {
-            NMesh.current.rotation.x += Math.sin(clock.getElapsedTime()) * 0.0005;
-            NMesh.current.rotation.y += Math.sin(clock.getElapsedTime()) * 0.0005;
-            NMesh.current.position.y += Math.cos(clock.getElapsedTime() * 0.8) * 0.0005;
-        }
-    })
+    const positionAnimation = positionSpring(viewport.width / 3, 0.1, 0, viewport.width / 4, 500);
+    const rotationAnimation = rotationSpring(Math.PI / 2, -0.5, 1.2, 3.5, 200, 50, 500);
+    const scale = ScaleSpring(400);
+    FloatAnimation(NMesh, 5, 5, 5, Math.sin, Math.sin, Math.cos, 0.8);
 
     const { nodes, materials } = useGLTF("assets/n.gltf");
     return (
@@ -328,9 +195,9 @@ export function LetterN(props) {
                 receiveShadow
                 geometry={nodes.N.geometry}
                 material={materials["Light Orange Bubble Letter Material"]}
-                position={positionSpring.position}
-                rotation={rotationSpring.rotation}
-                scale={scaleSpring.scale}
+                position={positionAnimation.position}
+                rotation={rotationAnimation.rotation}
+                scale={scale.scale}
                 ref={NMesh}
             />
         </group>
