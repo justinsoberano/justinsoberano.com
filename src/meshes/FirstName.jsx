@@ -1,10 +1,12 @@
 import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useSpring, animated } from "@react-spring/three";
-import { useThree, useFrame, Canvas } from "@react-three/fiber";
+import { useThree, useFrame } from "@react-three/fiber";
 
-/* Create an if statement for mobile position */
-/* viewport < 500 ? -viewport.width / 2.9 : -viewport.width / 3.6 */
+/* Swap all viewport.width with viewport.aspect */
+/* Aspect returns the aspect ratio of the webpage while width
+   returns the camera's total view width which messed up the positioning
+   and scaling of the letters */
 
  export const Viewport = () => {
     const { viewport } = useThree();
@@ -18,7 +20,7 @@ const PositionSpring = (pX, pY, pZ, newX, delay) => {
         from: { position: [0, 0, 0] }, 
         to: [
             { position: [pX, pY, pZ] },
-            { position: [newX, 0, -3]}
+            { position: [newX, 0, -1]}
         ],
         delay: delay,
         config: { mass: 4, tension: 200, friction: 40, }
@@ -54,8 +56,6 @@ const ScaleSpring = (delay) => {
     const a = v.width / 100;
     // TODO: edit values so the letters look more uniform
     const mB = v.width / (v.height / 2);
-    console.log(v.width);
-    console.log(Canvas.length);
     if(v.width >= 5) {
         return new useSpring({
             from: { scale: [a, a, a] }, to: { scale: [b, b, b] },

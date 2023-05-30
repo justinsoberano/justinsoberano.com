@@ -1,47 +1,42 @@
-import React, { useRef, useEffect, useLayoutEffect } from "react";
+import React, { useEffect, useState } from "react";
+import * as THREE from "three";
 import { Canvas, extend, useThree, useFrame } from "@react-three/fiber";
-import { CameraControls, Effects, OrbitControls, PerspectiveCamera } from "@react-three/drei";
+import { Effects } from "@react-three/drei";
 import { LetterI, LetterJ, LetterU, 
-         LetterS, LetterT, LetterN } from "../meshes/letterMeshes";
+         LetterS, LetterT, LetterN } from "../meshes/FirstName";
 import { FilmPass } from "/node_modules/three/examples/jsm/postprocessing/FilmPass.js";
-import { useSpring, animated, to } from "@react-spring/three";
 
 extend({ FilmPass })
 
-const cameraPositionSpring = () => {
-    return new useSpring({
-        from: { position: [0, 0, 6] },
-        to: { position: [0, 0, 8] },
+const CameraAnimation = () => {
+    const [started, setStarted] = useState(false)
+    const vec = new THREE.Vector3();
+    const { viewport } = useThree();
+    useEffect(() => {
+        setTimeout(() => setStarted(true), 2000);
+    });
+    useFrame(state => {
+        if (started) {
+            /* have positions dynamic to viewport.aspect */
+            /* Currently they are static */
+            if(viewport.aspect > 0.6) state.camera.position.lerp(vec.set(0, -2.7, 7), .025);
+            else if (viewport.aspect <= 0.6) state.camera.position.lerp(vec.set(0, -4, 6), .075);
+        }
     })
 }
 
-const Camera = (props) => {
-    const ref = useRef();
-    const set = useThree((state) => state.set);
-    useEffect(() => void set({ camera: ref.current }), []);
-    useFrame(() => ref.current.updateMatrixWorld());
-    const { viewport } = useThree();
-    useLayoutEffect(() => {
-        ref.current.aspect = viewport.aspect;
-        ref.current.updateProjectionMatrix();
-        ref.current.fov = 50;
-        ref.current.near = 0.1;
-        ref.current.far = 1000;
-    });
-    return <animated.perspectiveCamera ref={ref} {...props} />;
-};
-
 export default function Background() {
+    
     return (
         <Canvas>
-            <Camera position={[0,0,8]}/>
-            /* Background color */
+            {/* Background color */}
             <color attach={"background"} args={["rgb(210, 210, 212)"]} />
-            /* Grid for letter placement */
-            <gridHelper args={[100, 100, 100]} rotation-x={Math.PI / 2} />
+            {/* Grid for letter placement */}
+            {/* <gridHelper args={[100, 100, 100]} rotation-x={Math.PI / 2} /> */}
             <EffectsComposer />
             <Lighting />
             <Letters />
+            <CameraAnimation />
         </Canvas>
     );  
 }
