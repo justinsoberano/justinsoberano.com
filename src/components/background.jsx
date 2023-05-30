@@ -1,6 +1,6 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useLayoutEffect } from "react";
 import { Canvas, extend, useThree, useFrame } from "@react-three/fiber";
-import { Effects, OrbitControls } from "@react-three/drei";
+import { CameraControls, Effects, OrbitControls, PerspectiveCamera } from "@react-three/drei";
 import { LetterI, LetterJ, LetterU, 
          LetterS, LetterT, LetterN } from "../meshes/letterMeshes";
 import { FilmPass } from "/node_modules/three/examples/jsm/postprocessing/FilmPass.js";
@@ -8,31 +8,44 @@ import { useSpring, animated, to } from "@react-spring/three";
 
 extend({ FilmPass })
 
-function Controls() {
-    const {gl, camera} = useThree();
-    useSpring({
-        from: { z: 5 },
-        to: { z: 8 },
-        onFrame: ({ z }) => {
-            camera.position.z = z;
-        }
+const cameraPositionSpring = () => {
+    return new useSpring({
+        from: { position: [0, 0, 6] },
+        to: { position: [0, 0, 8] },
     })
 }
+
+const Camera = (props) => {
+    const ref = useRef();
+    const set = useThree((state) => state.set);
+    useEffect(() => void set({ camera: ref.current }), []);
+    useFrame(() => ref.current.updateMatrixWorld());
+    const { viewport } = useThree();
+    useLayoutEffect(() => {
+        ref.current.aspect = viewport.aspect;
+        ref.current.updateProjectionMatrix();
+        ref.current.fov = 50;
+        ref.current.near = 0.1;
+        ref.current.far = 1000;
+    });
+    return <animated.perspectiveCamera ref={ref} {...props} />;
+};
 
 export default function Background() {
     return (
         <Canvas>
-            {/* <Camera position={[0,0,8]}/> */}
+            <Camera position={[0,0,8]}/>
             /* Background color */
             <color attach={"background"} args={["rgb(210, 210, 212)"]} />
             /* Grid for letter placement */
-            {/* <gridHelper args={[100, 100, 100]} rotation-x={Math.PI / 2} /> */}
+            <gridHelper args={[100, 100, 100]} rotation-x={Math.PI / 2} />
             <EffectsComposer />
             <Lighting />
             <Letters />
         </Canvas>
     );  
 }
+
 const Letters = () => {
     return (
         <group>

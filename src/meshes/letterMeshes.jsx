@@ -1,9 +1,19 @@
 import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useSpring, animated } from "@react-spring/three";
-import { useThree, useFrame } from "@react-three/fiber";
+import { useThree, useFrame, Canvas } from "@react-three/fiber";
 
-const positionSpring = (pX, pY, pZ, newX, delay) => {
+/* Create an if statement for mobile position */
+/* viewport < 500 ? -viewport.width / 2.9 : -viewport.width / 3.6 */
+
+ export const Viewport = () => {
+    const { viewport } = useThree();
+    return viewport;
+}
+
+const PositionSpring = (pX, pY, pZ, newX, delay) => {
+    const v = Viewport();
+    if(v.width >= 5) {
     return new useSpring({ 
         from: { position: [0, 0, 0] }, 
         to: [
@@ -13,6 +23,17 @@ const positionSpring = (pX, pY, pZ, newX, delay) => {
         delay: delay,
         config: { mass: 4, tension: 200, friction: 40, }
     })
+    } else if (v.width < 5) {
+        return new useSpring({
+            from: { position: [0, 0, 0] },
+            to: [
+                { position: [pX, pY, pZ] },
+                { position: [newX * 2.1, 0, -3] }
+            ],
+            delay: delay,
+            config: { mass: 4, tension: 200, friction: 40, }
+        })
+    }
 }
 
 const rotationSpring = (rX, rY, rZ, mass, tension, friction, delay) => {
@@ -28,14 +49,28 @@ const rotationSpring = (rX, rY, rZ, mass, tension, friction, delay) => {
     })
 }
 const ScaleSpring = (delay) => {
-    const { viewport } = useThree();
-    const b = viewport.width / viewport.height;
-    const a = viewport.width / 100;
-    return new useSpring({ from: { scale: [a, a, a] }, to: { scale: [b, b, b] },
-        config: { mass: 2, tension: 200, friction: 50, },
-        delay: delay,
-    })
+    const v = Viewport();
+    const b = v.width / v.height;
+    const a = v.width / 100;
+    // TODO: edit values so the letters look more uniform
+    const mB = v.width / (v.height / 2);
+    console.log(v.width);
+    console.log(Canvas.length);
+    if(v.width >= 5) {
+        return new useSpring({
+            from: { scale: [a, a, a] }, to: { scale: [b, b, b] },
+            config: { mass: 2, tension: 200, friction: 50, },
+            delay: delay,
+        })
+    } else if(v.width < 5) {
+        return new useSpring({
+            from: { scale: [a, a, a] }, to: { scale: [mB, mB, mB] },
+            config: { mass: 2, tension: 200, friction: 50, },
+            delay: delay,
+        })
+    }
 }
+
 const FloatAnimation = (mesh, rZ, rY, pY, a, b, c, multiplier) => {
     const rotationZ = rZ / 10000; 
     const rotationY = rY / 10000; 
@@ -51,7 +86,7 @@ export function LetterJ(props) {
 
     const JMesh = useRef();
     const { viewport } = useThree();
-    const positionAnimation = positionSpring(-viewport.width / 2.9, 0, 0,-viewport.width / 3.6 ,0);
+    const positionAnimation = PositionSpring(-viewport.width / 2.9, 0, 0,-viewport.width / 3.6 ,0);
     const rotationAnimation = rotationSpring(Math.PI / 2, 0.6, 6, 3.5, 200, 50, 0);
     const scale = ScaleSpring(0);
     FloatAnimation(JMesh, 5, 5, 7, Math.cos, Math.sin, Math.sin, 1);
@@ -77,7 +112,7 @@ export function LetterU(props) {
 
     const UMesh = useRef();
     const { viewport } = useThree();
-    const positionAnimation = positionSpring(-viewport.width / 5, -viewport.width / 5, 0, -viewport.width / 7, 100);  
+    const positionAnimation = PositionSpring(-viewport.width / 5, -viewport.width / 5, 0, -viewport.width / 7, 100);  
     const rotationAnimation = rotationSpring(Math.PI / 4, 0, 3, 3.5, 200, 50, 100);
     const scale = ScaleSpring(100);
     FloatAnimation(UMesh, 5, 7, 7, Math.cos, Math.cos, Math.cos, 0.7)
@@ -103,7 +138,7 @@ export function LetterS(props) {
 
     const SMesh = useRef();
     const { viewport } = useThree();
-    const positionAnimation = positionSpring(-viewport.width / 15, viewport.width / 15, -0.5, -viewport.width / 30, 200);
+    const positionAnimation = PositionSpring(-viewport.width / 15, viewport.width / 15, -0.5, -viewport.width / 30, 200);
     const rotationAnimation = rotationSpring(Math.PI / 2, 0.2, 6, 4, 100, 40, 200);
     const scale = ScaleSpring(200);
     FloatAnimation(SMesh, 5, 5, 10, Math.cos, Math.cos, Math.cos, 0.6);
@@ -128,7 +163,7 @@ export function LetterS(props) {
 export function LetterT(props) {
     const TMesh = useRef();
     const { viewport } = useThree();
-    const positionAnimation = positionSpring(viewport.width / 10, viewport.width / 10, 0, viewport.width / 15, 300);
+    const positionAnimation = PositionSpring(viewport.width / 10, viewport.width / 10, 0, viewport.width / 15, 300);
     /* Px, Py, Pz, mass, tension, friction, delay*/
     const rotationAnimation = rotationSpring(Math.PI / 1.3, 0, 1, 2, 200, 50, 100);
     const scale = ScaleSpring(200);
@@ -155,7 +190,7 @@ export function LetterI(props) {
 
     const IMesh = React.useRef();
     const { viewport } = useThree();
-    const positionAnimation = positionSpring(viewport.width / 5, -viewport.width / 8, 0, viewport.width / 6, 400);
+    const positionAnimation = PositionSpring(viewport.width / 5, -viewport.width / 8, 0, viewport.width / 6, 400);
     /* Px, Py, Pz, mass, tension, friction, delay*/
     const rotationAnimation = rotationSpring(Math.PI / 2, 0.2, 6, 3, 100, 40, 400);
     const scale = ScaleSpring(300);
@@ -182,7 +217,7 @@ export function LetterN(props) {
 
     const NMesh = React.useRef();
     const { viewport } = useThree();
-    const positionAnimation = positionSpring(viewport.width / 3, 0.1, 0, viewport.width / 4, 500);
+    const positionAnimation = PositionSpring(viewport.width / 3, 0.1, 0, viewport.width / 4, 500);
     const rotationAnimation = rotationSpring(Math.PI / 2, -0.5, 1.2, 3.5, 200, 50, 500);
     const scale = ScaleSpring(400);
     FloatAnimation(NMesh, 5, 5, 5, Math.sin, Math.sin, Math.cos, 0.8);

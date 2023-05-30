@@ -18,7 +18,6 @@ var styles = {
   }
 }
 
-
 export default function App() {
   return (
     <>
