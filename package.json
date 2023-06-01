@@ -1,7 +1,7 @@
 {
   "name": "js.com",
   "version": "0.1.0",
-  "homepage": "https://justinsoberano.github.io/justinsoberano.com-react",
+  "homepage": "https://justinsoberano.com/",
   "private": true,
   "dependencies": {
     "@react-spring/three": "^9.7.2",
