@@ -2,20 +2,11 @@ import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useSpring, animated } from "@react-spring/three";
 import { useThree, useFrame } from "@react-three/fiber";
-
-/* Swap all viewport.width with viewport.aspect */
-/* Aspect returns the aspect ratio of the webpage while width
-   returns the camera's total view width which messed up the positioning
-   and scaling of the letters */
-
- export const Viewport = () => {
-    const { viewport } = useThree();
-    return viewport;
-}
+import * as THREE from "three";
 
 const PositionSpring = (pX, pY, pZ, newX, delay) => {
-    const v = Viewport();
-    if(v.width >= 5) {
+    const { viewport } = useThree();
+    if(viewport.aspect >= 0.7) {
     return new useSpring({ 
         from: { position: [0, 0, 0] }, 
         to: [
@@ -25,7 +16,7 @@ const PositionSpring = (pX, pY, pZ, newX, delay) => {
         delay: delay,
         config: { mass: 4, tension: 200, friction: 40, }
     })
-    } else if (v.width < 5) {
+    } else if (viewport.aspect < 0.7) {
         return new useSpring({
             from: { position: [0, 0, 0] },
             to: [
@@ -50,21 +41,20 @@ const rotationSpring = (rX, rY, rZ, mass, tension, friction, delay) => {
         }
     })
 }
+
 const ScaleSpring = (delay) => {
-    const v = Viewport();
-    const b = v.width / v.height;
-    const a = v.width / 100;
-    // TODO: edit values so the letters look more uniform
-    const mB = v.width / (v.height / 2);
-    if(v.width >= 5) {
+    const { viewport } = useThree();
+    const desktopScale = viewport.aspect;
+    const mobileScale = viewport.aspect * 2;
+    if(viewport.aspect >= 0.7) {
         return new useSpring({
-            from: { scale: [a, a, a] }, to: { scale: [b, b, b] },
+            from: { scale: [0, 0, 0] }, to: { scale: [desktopScale, desktopScale, desktopScale] },
             config: { mass: 2, tension: 200, friction: 50, },
             delay: delay,
         })
-    } else if(v.width < 5) {
+    } else if(viewport.aspect < 0.7) {
         return new useSpring({
-            from: { scale: [a, a, a] }, to: { scale: [mB, mB, mB] },
+            from: { scale: [0, 0, 0] }, to: { scale: [mobileScale, mobileScale, mobileScale] },
             config: { mass: 2, tension: 200, friction: 50, },
             delay: delay,
         })
@@ -72,9 +62,9 @@ const ScaleSpring = (delay) => {
 }
 
 const FloatAnimation = (mesh, rZ, rY, pY, a, b, c, multiplier) => {
-    const rotationZ = rZ / 10000; 
-    const rotationY = rY / 10000; 
-    const positionY = pY / 10000;
+    const rotationZ = rZ / 30000; 
+    const rotationY = rY / 30000; 
+    const positionY = pY / 30000;
     return new useFrame(({ clock }) => {
             mesh.current.rotation.z += a(clock.getElapsedTime()) * rotationZ;
             mesh.current.rotation.y += b(clock.getElapsedTime()) * rotationY;
@@ -86,19 +76,19 @@ export function LetterJ(props) {
 
     const JMesh = useRef();
     const { viewport } = useThree();
-    const positionAnimation = PositionSpring(-viewport.width / 2.9, 0, 0,-viewport.width / 3.6 ,0);
+    const positionAnimation = PositionSpring(-viewport.aspect * 2.5, 0, 0,-viewport.aspect * 2.1 ,0);
     const rotationAnimation = rotationSpring(Math.PI / 2, 0.6, 6, 3.5, 200, 50, 0);
     const scale = ScaleSpring(0);
     FloatAnimation(JMesh, 5, 5, 7, Math.cos, Math.sin, Math.sin, 1);
 
-    const { nodes, materials } = useGLTF("assets/j.gltf");
+    const { nodes } = useGLTF("assets/bit_j.gltf");
     return (
         <group {...props} dispose={null}>
             <animated.mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.J.geometry}
-                material={materials["Light Blue Bubble Letter Material"]}
+                material={new THREE.MeshNormalMaterial()}
                 position={positionAnimation.position}
                 rotation={rotationAnimation.rotation}
                 ref={JMesh}
@@ -112,19 +102,19 @@ export function LetterU(props) {
 
     const UMesh = useRef();
     const { viewport } = useThree();
-    const positionAnimation = PositionSpring(-viewport.width / 5, -viewport.width / 5, 0, -viewport.width / 7, 100);  
-    const rotationAnimation = rotationSpring(Math.PI / 4, 0, 3, 3.5, 200, 50, 100);
+    const positionAnimation = PositionSpring(-viewport.aspect * 1.5, -viewport.aspect * 1.6, 0, -viewport.aspect * 1.2, 100);  
+    const rotationAnimation = rotationSpring(Math.PI / 4, -0.4, 3, 3.5, 200, 50, 100);
     const scale = ScaleSpring(100);
     FloatAnimation(UMesh, 5, 7, 7, Math.cos, Math.cos, Math.cos, 0.7)
 
-    const { nodes, materials } = useGLTF("assets/u.gltf");
+    const { nodes } = useGLTF("assets/bit_u.gltf");
     return (
         <group {...props} dispose={null}>
             <animated.mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.U.geometry}
-                material={materials["Dark Brown Bubble Letter Material"]}
+                material={new THREE.MeshNormalMaterial()}
                 position={positionAnimation.position}
                 rotation={rotationAnimation.rotation}
                 scale={scale.scale}
@@ -138,19 +128,20 @@ export function LetterS(props) {
 
     const SMesh = useRef();
     const { viewport } = useThree();
-    const positionAnimation = PositionSpring(-viewport.width / 15, viewport.width / 15, -0.5, -viewport.width / 30, 200);
-    const rotationAnimation = rotationSpring(Math.PI / 2, 0.2, 6, 4, 100, 40, 200);
+    const positionAnimation = PositionSpring(-viewport.aspect, viewport.aspect, -0.5, -viewport.aspect / 2.8, 200);
+                                                                /* mass, tension, friction */
+    const rotationAnimation = rotationSpring(Math.PI/1.5, 0, -1, 3.5, 200, 55, 0);
     const scale = ScaleSpring(200);
     FloatAnimation(SMesh, 5, 5, 10, Math.cos, Math.cos, Math.cos, 0.6);
 
-    const { nodes, materials } = useGLTF("assets/s.gltf");
+    const { nodes } = useGLTF("assets/bit_s.gltf");
     return (
         <group {...props} dispose={null}>
             <animated.mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.S.geometry}
-                material={materials["Dark Green Bubble Letter Material"]}
+                material={new THREE.MeshNormalMaterial()}
                 position={positionAnimation.position}
                 rotation={rotationAnimation.rotation}
                 scale={scale.scale}
@@ -161,22 +152,22 @@ export function LetterS(props) {
 }
 
 export function LetterT(props) {
+    
     const TMesh = useRef();
     const { viewport } = useThree();
-    const positionAnimation = PositionSpring(viewport.width / 10, viewport.width / 10, 0, viewport.width / 15, 300);
-    /* Px, Py, Pz, mass, tension, friction, delay*/
+    const positionAnimation = PositionSpring(viewport.aspect * 1.2, viewport.aspect * 1.2, 0, viewport.aspect / 2.2 , 300);
     const rotationAnimation = rotationSpring(Math.PI / 1.3, 0, 1, 2, 200, 50, 100);
     const scale = ScaleSpring(200);
     FloatAnimation(TMesh, 5, 5, 7, Math.sin, Math.sin, Math.cos, 0.3);
 
-    const { nodes, materials } = useGLTF("assets/t.gltf");
+    const { nodes } = useGLTF("assets/bit_t.gltf");
     return (
         <group {...props} dispose={null}>
             <animated.mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.T.geometry}
-                material={materials["Dark Yellow Bubble Letter Material"]}
+                material={new THREE.MeshNormalMaterial()}
                 position={positionAnimation.position}
                 rotation={rotationAnimation.rotation}
                 scale={scale.scale}
@@ -188,22 +179,21 @@ export function LetterT(props) {
 
 export function LetterI(props) {
 
-    const IMesh = React.useRef();
+    const IMesh = useRef();
     const { viewport } = useThree();
-    const positionAnimation = PositionSpring(viewport.width / 5, -viewport.width / 8, 0, viewport.width / 6, 400);
-    /* Px, Py, Pz, mass, tension, friction, delay*/
-    const rotationAnimation = rotationSpring(Math.PI / 2, 0.2, 6, 3, 100, 40, 400);
+    const positionAnimation = PositionSpring(viewport.aspect * 2, -viewport.aspect, 0, viewport.aspect * 1.12, 400);
+    const rotationAnimation = rotationSpring(Math.PI / 3, 0.4, 1, 3.5, 200, 50, 400);
     const scale = ScaleSpring(300);
     FloatAnimation(IMesh, 5, 5, 5, Math.sin, Math.sin, Math.sin, 0.8);
 
-    const { nodes, materials } = useGLTF("assets/i.gltf");
+    const { nodes } = useGLTF("assets/bit_i.gltf");
     return (
         <group {...props} dispose={null}>
             <animated.mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.I.geometry}
-                material={materials["Pink Bubble Letter Material"]}
+                material={new THREE.MeshNormalMaterial()}
                 position={positionAnimation.position}
                 rotation={rotationAnimation.rotation}
                 scale={scale.scale}
@@ -215,21 +205,21 @@ export function LetterI(props) {
 
 export function LetterN(props) {
 
-    const NMesh = React.useRef();
+    const NMesh = useRef();
     const { viewport } = useThree();
-    const positionAnimation = PositionSpring(viewport.width / 3, 0.1, 0, viewport.width / 4, 500);
+    const positionAnimation = PositionSpring(viewport.aspect * 2.5, 0.1, 0, viewport.aspect * 1.85, 500);
     const rotationAnimation = rotationSpring(Math.PI / 2, -0.5, 1.2, 3.5, 200, 50, 500);
     const scale = ScaleSpring(400);
     FloatAnimation(NMesh, 5, 5, 5, Math.sin, Math.sin, Math.cos, 0.8);
 
-    const { nodes, materials } = useGLTF("assets/n.gltf");
+    const { nodes } = useGLTF("assets/bit_n.gltf");
     return (
         <group {...props} dispose={null}>
             <animated.mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.N.geometry}
-                material={materials["Light Orange Bubble Letter Material"]}
+                material={new THREE.MeshNormalMaterial()}
                 position={positionAnimation.position}
                 rotation={rotationAnimation.rotation}
                 scale={scale.scale}
@@ -239,9 +229,9 @@ export function LetterN(props) {
     );
 }
 
-useGLTF.preload("assets/assets/j.gltf");
-useGLTF.preload("assets/assets/u.gltf");
-useGLTF.preload("assets/assets/s.gltf");
-useGLTF.preload("assets/assets/t.gltf");
-useGLTF.preload("assets/assets/i.gltf");
-useGLTF.preload("assets/assets/n.gltf");
+useGLTF.preload("assets/bit_j.gltf");
+useGLTF.preload("assets/bit_u.gltf");
+useGLTF.preload("assets/bit_s.gltf");
+useGLTF.preload("assets/bit_t.gltf");
+useGLTF.preload("assets/bit_i.gltf");
+useGLTF.preload("assets/bit_n.gltf");
