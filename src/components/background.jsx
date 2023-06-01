@@ -79,11 +79,13 @@ const Lighting = () => {
     )
 }
 const EffectsComposer = () => {
+    const {viewport} = useThree();
+    let bloom = viewport.aspect >= 0.7 ? 0.7 : 1;
     return (
         <group>
             <Effects>
                 {/* Looks a bit too strong on desktop mode */}
-                <unrealBloomPass attachArray={"passes"} args={[undefined, 1, 2.2, 0.7]} />
+                <unrealBloomPass attachArray={"passes"} args={[undefined, bloom, 2.2, 0.7]} />
                 {/* <glitchPass attachArray={"passes"}/> */}
                 <filmPass attachArray={"passes"} args={[0.2, 0.5, 2048, false]} />
                 {/* fix later */}
