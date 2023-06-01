@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/justinsoberano.com-react/static/css/main.e6c13ad2.css",
-    "main.js": "/justinsoberano.com-react/static/js/main.cfa48250.js",
+    "main.js": "/justinsoberano.com-react/static/js/main.6856eab6.js",
     "index.html": "/justinsoberano.com-react/index.html",
     "main.e6c13ad2.css.map": "/justinsoberano.com-react/static/css/main.e6c13ad2.css.map",
-    "main.cfa48250.js.map": "/justinsoberano.com-react/static/js/main.cfa48250.js.map"
+    "main.6856eab6.js.map": "/justinsoberano.com-react/static/js/main.6856eab6.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.cfa48250.js"
+    "static/js/main.6856eab6.js"
   ]
 }
