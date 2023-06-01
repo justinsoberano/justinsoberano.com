@@ -10,7 +10,7 @@ var styles = {
     textAlign: "center",
   },
   h2: {
-    background: "yellow",
+    background: "rgb(255,200,255)",
     padding: '10px 20px',
     borderRadius: '10px',
     fontWeight: 'bold',
