@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import * as THREE from "three";
 import { Canvas, extend, useThree, useFrame } from "@react-three/fiber";
-import { Effects, OrbitControls, Stars } from "@react-three/drei";
+import { Effects } from "@react-three/drei";
 import { LetterI, LetterJ, LetterU, 
          LetterS, LetterT, LetterN } from "../meshes/FirstName";
-import { LastLetterO_1, LastLetterS, LastLetterA, LastLetterB, LastLetterE, LastLetterN, LastLetterO_2, LastLetterR } from "../meshes/LastName";
+import { LastLetterO1, LastLetterS, LastLetterA, LastLetterB, LastLetterE, LastLetterN, LastLetterO2, LastLetterR } from "../meshes/LastName";
 import { FilmPass } from "/node_modules/three/examples/jsm/postprocessing/FilmPass.js";
 import { GlitchPass } from "/node_modules/three/examples/jsm/postprocessing/GlitchPass.js";
 import { UnrealBloomPass } from "/node_modules/three/examples/jsm/postprocessing/UnrealBloomPass.js";
@@ -20,8 +20,10 @@ const CameraAnimation = () => {
     });
     useFrame(state => {
         if (started) {
-            if(viewport.aspect > 0.7) state.camera.position.lerp(vec.set(0, -viewport.aspect * 2, 7), .025);
-            else if (viewport.aspect <= 0.7) state.camera.position.lerp(vec.set(0, -viewport.aspect * 5.9, 6), .075);
+            if(viewport.aspect > 0.7) 
+                state.camera.position.lerp(vec.set(0, -viewport.aspect * 2, 7), .025);
+            else if (viewport.aspect <= 0.7) 
+                state.camera.position.lerp(vec.set(0, -viewport.aspect * 5.9, 6), .075);
         }
     })
 }
@@ -29,14 +31,12 @@ const CameraAnimation = () => {
 export default function Background() {
     return (
         <Canvas>
-            {/* <OrbitControls /> */}
-            {/* Background color */}
-            <color attach={"background"} args={["rgb(20, 20, 20)"]} />
-            {/* Grid for letter placement */}
+            <color attach={"background"} args={["rgb(15, 15, 15)"]} />
             {/* <gridHelper args={[100, 100, 100]} rotation-x={Math.PI / 2} /> */}
             <EffectsComposer />
             <Lighting />
             <FirstName />
+            <LastName />
             <CameraAnimation />
         </Canvas>
     );  
@@ -59,13 +59,13 @@ const LastName = () => {
     return(
         <group>
             <LastLetterS />
-            <LastLetterO_1 />
+            <LastLetterO1 />
             <LastLetterB />
             <LastLetterE />
             <LastLetterR />
             <LastLetterA />
             <LastLetterN />
-            <LastLetterO_2 />
+            <LastLetterO2 />
         </group>
     )
 }
@@ -73,21 +73,20 @@ const LastName = () => {
 const Lighting = () => {
     return (
         <group>
-            <ambientLight intensity={0.4} />
-            <spotLight position={[10, 15, 10]} angle={0.4} />
+            <ambientLight intensity={0.7} />
+            {/* <spotLight position={[10, 15, 10]} angle={0.4} /> */}
         </group>
     )
 }
 const EffectsComposer = () => {
-    const { viewport } = useThree();
     return (
         <group>
             <Effects>
                 {/* Looks a bit too strong on desktop mode */}
                 <unrealBloomPass attachArray={"passes"} args={[undefined, 1, 2.2, 0.7]} />
-                <filmPass attachArray={"passes"} args={[0.2, 0.3, 2048, false]} />
-                {/* fix later */}
                 {/* <glitchPass attachArray={"passes"}/> */}
+                <filmPass attachArray={"passes"} args={[0.2, 0.5, 2048, false]} />
+                {/* fix later */}
             </Effects>
         </group>
     )
