@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import * as THREE from "three";
 import { Canvas, extend, useThree, useFrame } from "@react-three/fiber";
 import { Effects } from "@react-three/drei";
 import { LetterI, LetterJ, LetterU, 
-         LetterS, LetterT, LetterN } from "../meshes/FirstName";
-import { LastLetterO1, LastLetterS, LastLetterA, LastLetterB, LastLetterE, LastLetterN, LastLetterO2, LastLetterR } from "../meshes/LastName";
+         LetterS, LetterT, LetterN } from "../meshes/name/FirstName";
+import { LastLetterO1, LastLetterS, LastLetterA, LastLetterB, LastLetterE, LastLetterN, LastLetterO2, LastLetterR } from "../meshes/name/LastName";
 import { FilmPass } from "/node_modules/three/examples/jsm/postprocessing/FilmPass.js";
 import { GlitchPass } from "/node_modules/three/examples/jsm/postprocessing/GlitchPass.js";
 import { UnrealBloomPass } from "/node_modules/three/examples/jsm/postprocessing/UnrealBloomPass.js";
@@ -31,6 +31,7 @@ const CameraAnimation = () => {
 export default function Background() {
     return (
         <Canvas>
+            <Suspense fallback={null}>
             <color attach={"background"} args={["rgb(15, 15, 15)"]} />
             {/* <gridHelper args={[100, 100, 100]} rotation-x={Math.PI / 2} /> */}
             <EffectsComposer />
@@ -38,6 +39,7 @@ export default function Background() {
             <FirstName />
             <LastName />
             <CameraAnimation />
+            </Suspense>
         </Canvas>
     );  
 }
