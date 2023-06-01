@@ -1,0 +1,151 @@
+
+/* class = . */
+/* id = # */
+
+/* clean up */
+
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    /* Use the other approach for cleaner css */
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+
+    bottom: 10vh;
+}
+
+.button-design {
+    margin: 10px;
+    background: black;
+    padding: 15px;
+    border-radius: 15px;
+    text-align: center;
+    cursor: pointer;
+    width: 200px;
+    align-items: center;
+}
+
+.yellow {
+    border: 5px solid yellow;
+}
+
+.coral {
+    border: 5px solid coral;
+}
+
+.aqua {
+    border: 5px solid aqua;
+}
+
+.pink {
+    border: 5px solid pink;
+}
+
+.button-text {
+    color: white;
+    font-family: Minecraft;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.button-text:active {
+    color: rgb(198, 198, 198);
+}
+
+.coral:hover {
+    border: 8px solid coral;
+    padding: 12px;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.yellow:hover {
+    border: 8px solid yellow;
+    padding: 12px;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.aqua:hover {
+    border: 8px solid aqua;
+    padding: 12px;
+    font-weight: bold;
+    font-style: italic;
+
+}
+
+.pink:hover {
+    border: 8px solid pink;
+    padding: 12px;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.pink:active {
+    border: 8px solid rgb(255, 116, 139);
+    padding: 12px;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.aqua:active {
+    border: 8px solid rgb(0, 150, 150);
+    padding: 12px;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.coral:active {
+    border: 8px solid rgb(211, 48, 76);
+    padding: 12px;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.yellow:active {
+    border: 8px solid rgb(178, 178, 28);
+    padding: 12px;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* TODO: import fonts */
+
+@font-face {
+    font-family: "Minecraft";
+    src: url("../fonts/minecraft/minecraftregular-bmg3-webfont.woff") format("woff");
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Minecraft";
+    src: url("../fonts/minecraft/minecraftitalic-r8mo-webfont.woff") format("woff");
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Minecraft";
+    src: url("../fonts/minecraft/minecraftbold-nmk1-webfont.woff") format("woff");
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: "Minecraft";
+    src: url("../fonts/minecraft/minecraftbolditalic-1y1e-webfont.woff") format("woff");
+    font-weight: bold;
+    font-style: italic;
+}
