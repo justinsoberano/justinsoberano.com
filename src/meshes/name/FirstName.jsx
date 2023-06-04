@@ -4,6 +4,9 @@ import { useSpring, animated } from "@react-spring/three";
 import { useThree, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
+/* Turn the functions to ternary notations for cleaner code */
+/* possibly create the useSpring functions in a separate helper file */
+
 const PositionSpring = (pX, pY, pZ, newX, delay) => {
     const { viewport } = useThree();
     if(viewport.aspect >= 0.7) {
