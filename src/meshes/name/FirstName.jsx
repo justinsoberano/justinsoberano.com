@@ -81,7 +81,7 @@ export function LetterJ(props) {
     const scale = ScaleSpring(0);
     FloatAnimation(JMesh, 5, 5, 7, Math.cos, Math.sin, Math.sin, 1);
 
-    const { nodes } = useGLTF("assets/bit_j.gltf");
+    const { nodes } = useGLTF("assets/letters/bit_j.gltf");
     return (
         <group {...props} dispose={null}>
             <animated.mesh
@@ -107,7 +107,7 @@ export function LetterU(props) {
     const scale = ScaleSpring(100);
     FloatAnimation(UMesh, 5, 7, 7, Math.cos, Math.cos, Math.cos, 0.7)
 
-    const { nodes } = useGLTF("assets/bit_u.gltf");
+    const { nodes } = useGLTF("assets/letters/bit_u.gltf");
     return (
         <group {...props} dispose={null}>
             <animated.mesh
@@ -134,7 +134,7 @@ export function LetterS(props) {
     const scale = ScaleSpring(200);
     FloatAnimation(SMesh, 5, 5, 10, Math.cos, Math.cos, Math.cos, 0.6);
 
-    const { nodes } = useGLTF("assets/bit_s.gltf");
+    const { nodes } = useGLTF("assets/letters/bit_s.gltf");
     return (
         <group {...props} dispose={null}>
             <animated.mesh
@@ -160,7 +160,7 @@ export function LetterT(props) {
     const scale = ScaleSpring(200);
     FloatAnimation(TMesh, 5, 5, 7, Math.sin, Math.sin, Math.cos, 0.3);
 
-    const { nodes } = useGLTF("assets/bit_t.gltf");
+    const { nodes } = useGLTF("assets/letters/bit_t.gltf");
     return (
         <group {...props} dispose={null}>
             <animated.mesh
@@ -186,7 +186,7 @@ export function LetterI(props) {
     const scale = ScaleSpring(300);
     FloatAnimation(IMesh, 5, 5, 5, Math.sin, Math.sin, Math.sin, 0.8);
 
-    const { nodes } = useGLTF("assets/bit_i.gltf");
+    const { nodes } = useGLTF("assets/letters/bit_i.gltf");
     return (
         <group {...props} dispose={null}>
             <animated.mesh
@@ -212,7 +212,7 @@ export function LetterN(props) {
     const scale = ScaleSpring(400);
     FloatAnimation(NMesh, 5, 5, 5, Math.sin, Math.sin, Math.cos, 0.8);
 
-    const { nodes } = useGLTF("assets/bit_n.gltf");
+    const { nodes } = useGLTF("assets/letters/bit_n.gltf");
     return (
         <group {...props} dispose={null}>
             <animated.mesh
@@ -229,9 +229,9 @@ export function LetterN(props) {
     );
 }
 
-useGLTF.preload("assets/bit_j.gltf");
-useGLTF.preload("assets/bit_u.gltf");
-useGLTF.preload("assets/bit_s.gltf");
-useGLTF.preload("assets/bit_t.gltf");
-useGLTF.preload("assets/bit_i.gltf");
-useGLTF.preload("assets/bit_n.gltf");
+useGLTF.preload("assets/letters/bit_j.gltf");
+useGLTF.preload("assets/letters/bit_u.gltf");
+useGLTF.preload("assets/letters/bit_s.gltf");
+useGLTF.preload("assets/letters/bit_t.gltf");
+useGLTF.preload("assets/letters/bit_i.gltf");
+useGLTF.preload("assets/letters/bit_n.gltf");
