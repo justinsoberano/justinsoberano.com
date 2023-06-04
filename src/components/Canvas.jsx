@@ -32,7 +32,7 @@ export default function Background() {
     return (
         <Canvas>
             <Suspense fallback={null}>
-            <color attach={"background"} args={["rgb(15, 15, 15)"]} />
+            <color attach={"background"} args={["rgb(0, 0, 0)"]} />
             {/* <gridHelper args={[100, 100, 100]} rotation-x={Math.PI / 2} /> */}
             <EffectsComposer />
             <Lighting />
