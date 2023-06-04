@@ -4,12 +4,17 @@ import { Canvas, extend, useThree, useFrame } from "@react-three/fiber";
 import { Effects } from "@react-three/drei";
 import { LetterI, LetterJ, LetterU, 
          LetterS, LetterT, LetterN } from "../meshes/name/FirstName";
-import { LastLetterO1, LastLetterS, LastLetterA, LastLetterB, LastLetterE, LastLetterN, LastLetterO2, LastLetterR } from "../meshes/name/LastName";
+import { LastLetterO1, LastLetterS, LastLetterA, 
+         LastLetterB, LastLetterE, LastLetterN, 
+         LastLetterO2, LastLetterR } from "../meshes/name/LastName";
+import Pickaxe from "../meshes/geometries/Pickaxe";
 import { FilmPass } from "/node_modules/three/examples/jsm/postprocessing/FilmPass.js";
 import { GlitchPass } from "/node_modules/three/examples/jsm/postprocessing/GlitchPass.js";
 import { UnrealBloomPass } from "/node_modules/three/examples/jsm/postprocessing/UnrealBloomPass.js";
 
 extend({ FilmPass, GlitchPass, UnrealBloomPass })
+
+
 
 const CameraAnimation = () => {
     const [started, setStarted] = useState(false)
@@ -18,12 +23,14 @@ const CameraAnimation = () => {
     useEffect(() => {
         setTimeout(() => setStarted(true), 2000);
     });
+    
     useFrame(state => {
+        console.log(viewport.aspect);
         if (started) {
             if(viewport.aspect > 0.7) 
-                state.camera.position.lerp(vec.set(0, -viewport.aspect * 2, 7), .025);
+                state.camera.position.lerp(vec.set(0, -viewport.aspect * 2.5, 7), .025);
             else if (viewport.aspect <= 0.7) 
-                state.camera.position.lerp(vec.set(0, -viewport.aspect * 5.9, 6), .075);
+                state.camera.position.lerp(vec.set(0, -viewport.aspect * 9, 6), .025);
         }
     })
 }
@@ -39,6 +46,7 @@ export default function Background() {
             <FirstName />
             <LastName />
             <CameraAnimation />
+            {/* <Pickaxe /> */}
             </Suspense>
         </Canvas>
     );  

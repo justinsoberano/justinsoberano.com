@@ -2,6 +2,8 @@ import React from "react";
 import Background from "./components/Canvas";
 import Buttons from "./components/Buttons";
 
+/* Remove styles whenever finished with website */
+
 var styles = {
   div: {
     position: "absolute",
