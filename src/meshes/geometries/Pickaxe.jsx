@@ -15,8 +15,8 @@ export default function Pickaxe(props) {
                     castShadow
                     receiveShadow
                     geometry={nodes.Object_2.geometry}
-                    material={new THREE.MeshNormalMaterial()}
-                    position={[viewport.aspect * 5, 0, -5]}
+                    material={materials["Material.009"]}
+                    position={[0, -4, 0]}
                     rotation={[0, 0, 0]}
                     scale={[0.05, 0.05, 0.05]}
                 />

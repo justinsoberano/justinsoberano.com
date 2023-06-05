@@ -1,7 +1,7 @@
 import React, { Suspense, useEffect, useState } from "react";
 import * as THREE from "three";
 import { Canvas, extend, useThree, useFrame } from "@react-three/fiber";
-import { Effects } from "@react-three/drei";
+import { Effects, Stars } from "@react-three/drei";
 import { LetterI, LetterJ, LetterU, 
          LetterS, LetterT, LetterN } from "../meshes/name/FirstName";
 import { LastLetterO1, LastLetterS, LastLetterA, 
@@ -23,14 +23,13 @@ const CameraAnimation = () => {
     useEffect(() => {
         setTimeout(() => setStarted(true), 2000);
     });
-    
     useFrame(state => {
         console.log(viewport.aspect);
         if (started) {
             if(viewport.aspect > 0.7) 
-                state.camera.position.lerp(vec.set(0, -viewport.aspect * 2.5, 7), .025);
+                state.camera.position.lerp(vec.set(0, -4.5, 7), .025);
             else if (viewport.aspect <= 0.7) 
-                state.camera.position.lerp(vec.set(0, -viewport.aspect * 9, 6), .025);
+                state.camera.position.lerp(vec.set(0, -5.1, 6), .025);
         }
     })
 }
@@ -39,6 +38,7 @@ export default function Background() {
     return (
         <Canvas>
             <Suspense fallback={null}>
+            {/* <Stars radius={10} depth={10} count={5000} factor={1} saturation={3} fade speed={1} /> */}
             <color attach={"background"} args={["rgb(0, 0, 0)"]} />
             {/* <gridHelper args={[100, 100, 100]} rotation-x={Math.PI / 2} /> */}
             <EffectsComposer />

@@ -48,16 +48,18 @@ const rotationSpring = (rX, rY, rZ, mass, tension, friction, delay) => {
 const ScaleSpring = (delay) => {
     const { viewport } = useThree();
     const desktopScale = viewport.aspect;
-    const mobileScale = viewport.aspect * 2;
+    const mobileScale = 1;
     if(viewport.aspect >= 0.7) {
         return new useSpring({
-            from: { scale: [0, 0, 0] }, to: { scale: [desktopScale, desktopScale, desktopScale] },
+            from: { scale: [0, 1, 0] }, 
+            to: { scale: [desktopScale, 0.7, desktopScale] },
             config: { mass: 2, tension: 200, friction: 50, },
             delay: delay,
         })
     } else if(viewport.aspect < 0.7) {
         return new useSpring({
-            from: { scale: [0, 0, 0] }, to: { scale: [mobileScale, mobileScale, mobileScale] },
+            from: { scale: [0, 1, 0] }, 
+            to: { scale: [mobileScale, 0.5, mobileScale] },
             config: { mass: 2, tension: 200, friction: 50, },
             delay: delay,
         })
