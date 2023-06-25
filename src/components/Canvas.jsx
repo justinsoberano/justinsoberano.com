@@ -17,6 +17,7 @@ extend({ FilmPass, GlitchPass, UnrealBloomPass })
 
 
 const CameraAnimation = () => {
+    
     const [started, setStarted] = useState(false)
     const vec = new THREE.Vector3();
     const { viewport } = useThree();
@@ -24,7 +25,6 @@ const CameraAnimation = () => {
         setTimeout(() => setStarted(true), 2000);
     });
     useFrame(state => {
-        console.log(viewport.aspect);
         if (started) {
             if(viewport.aspect > 0.7) 
                 state.camera.position.lerp(vec.set(0, -4.5, 7), .025);
