@@ -96,8 +96,8 @@ const EffectsComposer = () => {
             <Effects>
                 {/* Looks a bit too strong on desktop mode */}
                 <unrealBloomPass attachArray={"passes"} args={[undefined, bloom, 2.2, 0.7]} />
-                {/* <glitchPass attachArray={"passes"}/> */}
-                <filmPass attachArray={"passes"} args={[0.2, 0.5, 2048, false]} />
+                <glitchPass attachArray={"passes"}/>
+                <filmPass attachArray={"passes"} args={[0.2, 0.5, 1500, false]} />
                 {/* fix later */}
             </Effects>
         </group>

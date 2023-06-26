@@ -25,7 +25,7 @@ export const Experience = props => {
         <>
             <a.div className="container" style={{ ...CardSpring() }} key={toggle}>
                 <div className="card-design">
-                    <img className="image" src="https://picsum.photos/450/150" />
+                    <img className="image" src="https://picsum.photos/400/150" />
                     <h1 className="employer">NASA</h1>
                     <p className="job-dates"> JUN '23 - AUG '23 </p>
                     <p className="job-title">AI/ML - Computer Vision Intern</p>
@@ -34,7 +34,7 @@ export const Experience = props => {
                         A super cool experience!</p>
                 </div>
                 <div className="card-design">
-                    <img className="image" src="https://picsum.photos/450/150" />
+                    <img className="image" src="https://picsum.photos/400/150" />
                     <h1 className="employer">NASA</h1>
                     <p className="job-dates"> AUG '22 - DEC '22 </p>
                     <p className="job-title">XR/VR - Digital Twins Intern</p>
@@ -43,7 +43,7 @@ export const Experience = props => {
                         for future Mars exploration! </p>
                 </div>
                 <div className="card-design">
-                    <img className="image" src="https://picsum.photos/450/150" />
+                    <img className="image" src="https://picsum.photos/400/150" />
                     <h1 className="employer">ISU IT Dept.</h1>
                     <p className="job-dates"> AUG '22 - DEC '22 </p>
                     <p className="job-title">Technical Assistant II</p>
