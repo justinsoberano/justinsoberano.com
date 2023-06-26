@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {useSpring , a} from "@react-spring/web";
 import "./styles.css";
+import "./cardstyle.css"
 import { Experience } from "./Cards";
 
 /* Try to use maps to create the buttons */
 /* Use 'useTrail' to animate the buttons */
 
-export default function Buttons() {
+export function Buttons() {
     
     function ButtonSprings(delay) {
         return useSpring({
@@ -43,4 +44,3 @@ export default function Buttons() {
 
     );
 }
-
