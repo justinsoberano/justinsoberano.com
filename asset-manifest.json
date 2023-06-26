@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.6227f8f1.css",
-    "main.js": "/static/js/main.c6f158b4.js",
+    "main.js": "/static/js/main.a67c17ba.js",
     "static/media/JetBrainsMono-BoldItalic.woff2": "/static/media/JetBrainsMono-BoldItalic.c8aab241a20a44900acc.woff2",
     "static/media/JetBrainsMono-SemiBoldItalic.woff2": "/static/media/JetBrainsMono-SemiBoldItalic.c806f3da5871fdfeeb65.woff2",
     "static/media/JetBrainsMono-MediumItalic.woff2": "/static/media/JetBrainsMono-MediumItalic.cbdbf29e8995bf6c5b78.woff2",
@@ -27,10 +27,10 @@
     "static/media/minecraftbold-nmk1-webfont.woff2": "/static/media/minecraftbold-nmk1-webfont.a17dad614a8c2121b2a5.woff2",
     "index.html": "/index.html",
     "main.6227f8f1.css.map": "/static/css/main.6227f8f1.css.map",
-    "main.c6f158b4.js.map": "/static/js/main.c6f158b4.js.map"
+    "main.a67c17ba.js.map": "/static/js/main.a67c17ba.js.map"
   },
   "entrypoints": [
     "static/css/main.6227f8f1.css",
-    "static/js/main.c6f158b4.js"
+    "static/js/main.a67c17ba.js"
   ]
 }
