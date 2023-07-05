@@ -1,7 +1,7 @@
 import React, { Suspense, useEffect, useState } from "react";
 import * as THREE from "three";
 import { Canvas, extend, useThree, useFrame } from "@react-three/fiber";
-import { Effects, Stars } from "@react-three/drei";
+import { AsciiRenderer, Effects, Stars } from "@react-three/drei";
 import { LetterI, LetterJ, LetterU, 
          LetterS, LetterT, LetterN } from "../meshes/name/FirstName";
 import { LastLetterO1, LastLetterS, LastLetterA, 
@@ -14,10 +14,7 @@ import { UnrealBloomPass } from "/node_modules/three/examples/jsm/postprocessing
 
 extend({ FilmPass, GlitchPass, UnrealBloomPass })
 
-
-
 const CameraAnimation = () => {
-    
     const [started, setStarted] = useState(false)
     const vec = new THREE.Vector3();
     const { viewport } = useThree();
@@ -27,7 +24,7 @@ const CameraAnimation = () => {
     useFrame(state => {
         if (started) {
             if(viewport.aspect > 0.7) 
-                state.camera.position.lerp(vec.set(0, -4.5, 7), .025);
+                state.camera.position.lerp(vec.set(0, -3, 7), .025);
             else if (viewport.aspect <= 0.7) 
                 state.camera.position.lerp(vec.set(0, -5.1, 6), .025);
         }
@@ -36,7 +33,7 @@ const CameraAnimation = () => {
 
 export default function Background() {
     return (
-        <Canvas>
+        <Canvas dpr={1}>
             <Suspense fallback={null}>
             {/* <Stars radius={10} depth={10} count={5000} factor={1} saturation={3} fade speed={1} /> */}
             <color attach={"background"} args={["rgb(0, 0, 0)"]} />
@@ -90,14 +87,15 @@ const Lighting = () => {
 }
 const EffectsComposer = () => {
     const {viewport} = useThree();
-    let bloom = viewport.aspect >= 0.7 ? 0.7 : 1;
+    let bloom = viewport.aspect >= 0.7 ? 0.5 : 0.8;
     return (
         <group>
             <Effects>
                 {/* Looks a bit too strong on desktop mode */}
                 <unrealBloomPass attachArray={"passes"} args={[undefined, bloom, 2.2, 0.7]} />
-                <glitchPass attachArray={"passes"}/>
-                <filmPass attachArray={"passes"} args={[0.2, 0.5, 1500, false]} />
+                {/* <glitchPass attachArray={"passes"}/> */}
+                <filmPass attachArray={"passes"} args={[0.5, 0.5, 2000, false]} />
+                {/* <AsciiRenderer /> */}
                 {/* fix later */}
             </Effects>
         </group>
