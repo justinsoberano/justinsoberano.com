@@ -9,7 +9,7 @@ import { useThree } from "@react-three/fiber";
 /* In all of the letters, remove the dY position */
 function Position(mX, mY, mZ, dX, dY, dZ) {
     const {viewport} = useThree();
-    const desktopY = viewport.aspect >= 1.15 ? (0.475 - viewport.aspect * 0.55) : 0.475 - viewport.aspect * 0.3;
+    const desktopY = 0.475 - viewport.aspect * 0.75;
     if(viewport.aspect >= 0.7) {
         return new useSpring({
             to: { position: [dX, desktopY, dZ] },
