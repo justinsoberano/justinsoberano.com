@@ -34,7 +34,6 @@ const CameraAnimation = () => {
 export default function Background() {
     return (
         <Canvas dpr={1}>
-            <Suspense fallback={null}>
                 <Stars radius={1.2} depth={5} count={2000} factor={0.2} saturation={1} fade speed={2} />
                 <color attach={"background"} args={["rgb(0, 0, 0)"]} />
                 {/* <gridHelper args={[100, 100, 100]} rotation-x={Math.PI / 2} /> */}
@@ -45,7 +44,6 @@ export default function Background() {
                 <CameraAnimation />
                 {/* <Pickaxe /> */}
                 {/* <Plane args={[100,3]} /> */}
-            </Suspense>
         </Canvas>
     );  
 }

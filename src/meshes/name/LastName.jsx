@@ -214,9 +214,9 @@ export function LastLetterO2(props) {
 }
 
 
-useGLTF.preload("assets/bit_s.gltf");
-useGLTF.preload("assets/bit_o.gltf");
-useGLTF.preload("assets/bit_b.gltf");
-useGLTF.preload("assets/bit_e.gltf");
-useGLTF.preload("assets/bit_r.gltf");
-useGLTF.preload("assets/bit_a.gltf");
+useGLTF.preload("assets/letters/bit_s.gltf");
+useGLTF.preload("assets/letters/bit_o.gltf");
+useGLTF.preload("assets/letters/bit_b.gltf");
+useGLTF.preload("assets/letters/bit_e.gltf");
+useGLTF.preload("assets/letters/bit_r.gltf");
+useGLTF.preload("assets/letters/bit_a.gltf");
