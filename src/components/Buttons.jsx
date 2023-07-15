@@ -20,6 +20,7 @@ export const Buttons = () => {
 
     const [timer, setTimer] = useState(2200)
     const [show, set] = useState(true);
+    const [showExperience, setExperience] = useState(show)
 
     return(
         <div>
@@ -27,7 +28,7 @@ export const Buttons = () => {
                 <a.div className="button-design noselect yellow" onClick={() => set(!show)} style={{...ButtonSprings(timer + 50)}}>
                     <span className="button-text">experiences</span>
                 </a.div>
-            <a.div className="button-design noselect aqua" onClick={() => set(!show)} style={{...ButtonSprings(timer + 100)}}>
+            {/* <a.div className="button-design noselect aqua" onClick={() => set(!show)} style={{...ButtonSprings(timer + 100)}}>
                     <span className="button-text">projects</span>
                 </a.div>
             <a.div className="button-design noselect coral" onClick={() => set(!show)} style={{ ...ButtonSprings(timer + 150)}}>
@@ -35,7 +36,7 @@ export const Buttons = () => {
                 </a.div>
             <a.div className="button-design noselect pink" onClick={() => set(!show)} style={{ ...ButtonSprings(timer + 200)}}>
                     <span className="button-text">contact</span>
-                </a.div>
+                </a.div> */}
             </a.div>
             
             <Experience

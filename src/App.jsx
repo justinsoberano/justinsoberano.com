@@ -9,7 +9,7 @@ import { Experience } from "./components/Cards";
 var styles = {
   div: {
     position: "absolute",
-    top: "70%",
+    top: "0%",
     left: "50%",
     transform: "translateX(-50%)",
     textAlign: "center",
@@ -34,13 +34,13 @@ export default function App() {
     <>
     <Background />
     <Buttons />
-    {/* <div style={styles.div}>
-      <h3 style={styles.h2}>❤️ WORK IN PROGRESS ❤️</h3>
+    <div style={styles.div}>
+      <h3 style={styles.h2}>UNDER CONSTRUCTION</h3>
         <a style={styles.p} 
           rel="noreferrer"
            href="https://github.com/justinsoberano/justinsoberano.com" 
           target="_blank"> View Github Repository </a>
-    </div> */}
+    </div>
     </>
   );
 }
