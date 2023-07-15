@@ -1,7 +1,7 @@
 import React, { Suspense, useEffect, useState } from "react";
 import * as THREE from "three";
 import { Canvas, extend, useThree, useFrame } from "@react-three/fiber";
-import { AsciiRenderer, Effects, Stars } from "@react-three/drei";
+import { AsciiRenderer, Effects, Plane, Stars } from "@react-three/drei";
 import { LetterI, LetterJ, LetterU, 
          LetterS, LetterT, LetterN } from "../meshes/name/FirstName";
 import { LastLetterO1, LastLetterS, LastLetterA, 
@@ -35,15 +35,16 @@ export default function Background() {
     return (
         <Canvas dpr={1}>
             <Suspense fallback={null}>
-            {/* <Stars radius={10} depth={10} count={5000} factor={1} saturation={3} fade speed={1} /> */}
-            <color attach={"background"} args={["rgb(0, 0, 0)"]} />
-            {/* <gridHelper args={[100, 100, 100]} rotation-x={Math.PI / 2} /> */}
-            <EffectsComposer />
-            <Lighting />
-            <FirstName />
-            <LastName />
-            <CameraAnimation />
-            {/* <Pickaxe /> */}
+                <Stars radius={1.2} depth={5} count={2000} factor={0.2} saturation={1} fade speed={2} />
+                <color attach={"background"} args={["rgb(0, 0, 0)"]} />
+                {/* <gridHelper args={[100, 100, 100]} rotation-x={Math.PI / 2} /> */}
+                <EffectsComposer />
+                <Lighting />
+                <FirstName />
+                <LastName />
+                <CameraAnimation />
+                {/* <Pickaxe /> */}
+                {/* <Plane args={[100,3]} /> */}
             </Suspense>
         </Canvas>
     );  
@@ -94,7 +95,7 @@ const EffectsComposer = () => {
                 {/* Looks a bit too strong on desktop mode */}
                 <unrealBloomPass attachArray={"passes"} args={[undefined, bloom, 2.2, 0.7]} />
                 {/* <glitchPass attachArray={"passes"}/> */}
-                <filmPass attachArray={"passes"} args={[0.5, 0.5, 2000, false]} />
+                <filmPass attachArray={"passes"} args={[0.5, 0.5, 1512, false]} />
                 {/* <AsciiRenderer /> */}
                 {/* fix later */}
             </Effects>

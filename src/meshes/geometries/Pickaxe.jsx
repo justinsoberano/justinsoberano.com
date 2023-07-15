@@ -17,7 +17,7 @@ export default function Pickaxe(props) {
                     geometry={nodes.Object_2.geometry}
                     material={materials["Material.009"]}
                     position={[0, -4, 0]}
-                    rotation={[0, 0, 0]}
+                    rotation={[0, 2.3, 2]}
                     scale={[0.05, 0.05, 0.05]}
                 />
             </group>
