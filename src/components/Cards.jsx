@@ -5,25 +5,26 @@ import './cardstyle.css';
 
 export const Experience = props => {
 
-    const {show} = props;
-
-    const [toggle, set] = useState(show);
-    useEffect(() => {
-        set(show);
-    }, [show]);
+    let toggle = props.s
 
     function CardSpring() {
         return useSpring({
-            from: !toggle ? { opacity: 1, transform: "translateY(400px)" } : { opacity: 0, transform: "translateY(0px)" },
-            to: !toggle ? { opacity: 1, transform: "translateY(0px)" } : { opacity: 0, transform: "translateY(400px)" },
-            delay: 200,
-            config: { mass: 2, tension: 200, friction: 50 }
+            from: !toggle ? { opacity: 0, transform: "translateY(450px)" } : { opacity: 1, transform: "translateY(0px)" },
+            to: !toggle ? { opacity: 1, transform: "translateY(0px)" } : { opacity: 0, transform: "translateY(450px)" },
+            delay: 0,
+            config: { mass: 1, tension: 200, friction: 50 }
         })
     }
 
     return (
         <>
             <a.div className="container" style={{ ...CardSpring() }} key={toggle}>
+                <div className="back-button" style={{ ...CardSpring() }} onClick={() => {
+                    props.changeShow(true);
+                    props.changeTimer(100)
+                }}>
+                    <p className="back-button-text"> BACK </p>
+                </div>
                 <div className="card-design">
                     <img className="image" src="https://picsum.photos/400/150" />
                     <h1 className="employer">NASA</h1>

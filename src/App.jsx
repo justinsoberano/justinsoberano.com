@@ -1,6 +1,8 @@
 import React from "react";
 import Background from "./components/Canvas";
-import {Buttons} from "./components/Buttons";
+import {Buttons, Wxperience} from "./components/Buttons";
+import { Html, Plane } from "@react-three/drei";
+import { Experience } from "./components/Cards";
 
 /* Remove styles whenever finished with website */
 
