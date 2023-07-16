@@ -15,6 +15,14 @@ export const LoadingScreen = ({started, onStarted}) => {
                     fontFamily: "Minecraft",
                     fontWeight: "bold",
                 }}>Ready Player One</p>
+                <p style={{ 
+                    position: "absolute",
+                    top: "70%",
+                    color: "yellow",
+                    fontSize: "20px",
+                    fontFamily: "Minecraft",
+                    fontStyle: "italic",
+                }}> Website is still a work in progress!</p>
                 <p style={{
                     position: "absolute",
                     fontFamily: "Minecraft",
