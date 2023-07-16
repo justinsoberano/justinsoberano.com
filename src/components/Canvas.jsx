@@ -1,7 +1,7 @@
 import React, { Suspense, useEffect, useState } from "react";
 import * as THREE from "three";
 import { Canvas, extend, useThree, useFrame } from "@react-three/fiber";
-import { AsciiRenderer, Effects, Plane, Stars } from "@react-three/drei";
+import { AsciiRenderer, Effects, Loader, Plane, Stars } from "@react-three/drei";
 import { LetterI, LetterJ, LetterU, 
          LetterS, LetterT, LetterN } from "../meshes/name/FirstName";
 import { LastLetterO1, LastLetterS, LastLetterA, 
@@ -11,6 +11,8 @@ import Pickaxe from "../meshes/geometries/Pickaxe";
 import { FilmPass } from "/node_modules/three/examples/jsm/postprocessing/FilmPass.js";
 import { GlitchPass } from "/node_modules/three/examples/jsm/postprocessing/GlitchPass.js";
 import { UnrealBloomPass } from "/node_modules/three/examples/jsm/postprocessing/UnrealBloomPass.js";
+import {LoadingScreen} from "./LoadingScreen"
+import { Buttons } from "./Buttons";
 
 extend({ FilmPass, GlitchPass, UnrealBloomPass })
 
@@ -31,20 +33,39 @@ const CameraAnimation = () => {
     })
 }
 
+const audio = new Audio("/assets/audio/mc_moogcity_8bit.m4a");
+
 export default function Background() {
+
+    const [start, setStart] = useState(false)
+
+    useEffect(() => {
+        if(start) {
+            audio.play();
+        }
+    }, [start]);
+
     return (
-        <Canvas dpr={1}>
-                <Stars radius={1.2} depth={5} count={2000} factor={0.2} saturation={1} fade speed={2} />
-                <color attach={"background"} args={["rgb(0, 0, 0)"]} />
-                {/* <gridHelper args={[100, 100, 100]} rotation-x={Math.PI / 2} /> */}
+        <>
+            <Canvas dpr={1}>
+                <Suspense fallback={null}> {start && 
+                    <>
+                        <color attach={"background"} args={["rgb(0, 0, 0)"]} />
+                        {/* <gridHelper args={[100, 100, 100]} rotation-x={Math.PI / 2} /> */}
+                        <Lighting />
+                        <FirstName />
+                        <LastName />
+                        <CameraAnimation />
+                        {/* <Pickaxe /> */}
+                        {/* <Plane args={[100,3]} /> */}
+                    </>
+                } </Suspense>
                 <EffectsComposer />
-                <Lighting />
-                <FirstName />
-                <LastName />
-                <CameraAnimation />
-                {/* <Pickaxe /> */}
-                {/* <Plane args={[100,3]} /> */}
-        </Canvas>
+                <Stars radius={1.2} depth={5} count={2000} factor={0.2} saturation={1} fade speed={2} />
+            </Canvas>
+            {start && <Buttons />}
+            <LoadingScreen started={start} onStarted={() => setStart(true)} />
+        </>
     );  
 }
 
