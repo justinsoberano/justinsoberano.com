@@ -9,7 +9,7 @@ export const Experience = props => {
 
     function CardSpring() {
         return useSpring({
-            from: !toggle ? { opacity: 0, transform: "translateY(450px)" } : { opacity: 1, transform: "translateY(0px)" },
+            from: !toggle ? { opacity: 1, transform: "translateY(450px)" } : { opacity: 0, transform: "translateY(0px)" },
             to: !toggle ? { opacity: 1, transform: "translateY(0px)" } : { opacity: 0, transform: "translateY(450px)" },
             delay: 0,
             config: { mass: 1, tension: 200, friction: 50 }
