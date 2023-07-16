@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import Background from "./components/Canvas";
 import {Buttons, Wxperience} from "./components/Buttons";
 import { Html, Plane } from "@react-three/drei";
@@ -32,15 +32,7 @@ var styles = {
 export default function App() {
   return (
     <>
-    <Background />
-    <Buttons />
-    <div style={styles.div}>
-      <h3 style={styles.h2}>UNDER CONSTRUCTION</h3>
-        <a style={styles.p} 
-          rel="noreferrer"
-           href="https://github.com/justinsoberano/justinsoberano.com" 
-          target="_blank"> View Github Repository </a>
-    </div>
+      <Background />
     </>
   );
 }
