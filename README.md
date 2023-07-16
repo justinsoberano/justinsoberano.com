@@ -4,7 +4,7 @@
 Created with:
  - React
  - ThreeJS
- - react-three-fiber | R3F
+ - react-three-drei
  - react-spring
  - ❤️
 
