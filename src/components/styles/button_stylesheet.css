@@ -29,6 +29,26 @@
     align-items: center;
 }
 
+.unimplemented-button {
+    margin: 10px;
+    background: black;
+    padding: 15px;
+    border-radius: 15px;
+    text-align: center;
+    cursor: not-allowed;
+    width: 150px;
+    align-items: center;
+    border: 5px solid gray;
+    color: darkgray;
+}
+
+.unimplemented-button-text {
+    color: darkgray;
+    font-family: Minecraft;
+    font-weight: bold;
+    font-size: 20px;
+}
+
 .yellow {
     border: 5px solid yellow;
 }
