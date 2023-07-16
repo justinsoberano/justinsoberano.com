@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useSpring, a } from '@react-spring/web';
 import './styles/card_stylesheet.css';
+import tech_stack1 from "../images/Tech_1.png";
+import tech_stack2 from "../images/Tech_2.png";
+import tech_stack3 from "../images/Tech_3.png";
+import nasa from "../images/nasa_logo_white.png";
+import isu from "../images/isu.png";
 
 
 export const Experience = props => {
@@ -18,7 +23,7 @@ export const Experience = props => {
 
     return (
         <>
-            <a.div className="container" style={{ ...CardSpring() }} key={toggle}>
+            <a.div className="container noselect" style={{ ...CardSpring() }} key={toggle}>
                 <div className="back-button" style={{ ...CardSpring() }} onClick={() => {
                     props.changeShow(true);
                     props.changeTimer(100)
@@ -26,31 +31,42 @@ export const Experience = props => {
                     <p className="back-button-text"> BACK </p>
                 </div>
                 <div className="card-design">
-                    <img className="image" src="https://picsum.photos/400/150" />
-                    <h1 className="employer">NASA</h1>
+                    <div className="computer-image">
+                        <img style={{ opacity: "0" }} src="https://picsum.photos/325/150" alt="image" />
+                    </div>
+                    <img className="tech-stack" src={tech_stack2} alt="image" />
+                    <img className="employer" src={nasa} alt="image" />
                     <p className="job-dates"> JUN '23 - AUG '23 </p>
                     <p className="job-title">AI/ML - Computer Vision Intern</p>
-                    <p className="job-description">Developed a image-to-3D AI model that uses depth analysis,
-                        image view synthesis, and a bunch of other cool algorithms.
-                        A super cool experience!</p>
+                    <p className="job-description">Developed an image to 3D machine learning model, using image view synthesis,
+                        neural radiance fields, and global local paths networks. This model will be used for
+                        quick creation of 3D assets for hyper-realistic environments.</p>
                 </div>
+
+
                 <div className="card-design">
-                    <img className="image" src="https://picsum.photos/400/150" />
-                    <h1 className="employer">NASA</h1>
+                    <div className="mars-image">
+                        <img style={{ opacity: "0" }} src="https://picsum.photos/325/150" alt="image" />
+                    </div>
+                    <img className="tech-stack" src={tech_stack1} alt="image" />
+                    <img className="employer" src={nasa} alt="image" />
                     <p className="job-dates"> AUG '22 - DEC '22 </p>
                     <p className="job-title">XR/VR - Digital Twins Intern</p>
-                    <p className="job-description">Worked in a team of four to help design and develop a virtual Mars
-                        environment. These environments will be used to train future astronauts
-                        for future Mars exploration! </p>
+                    <p className="job-description">In a team of four, we developed a virtual
+                        hyperrealistic Martian environment. These environments will be used to train
+                        astronauts for future Artemis missions. Currently being used by NASA's CHAPEA group!</p>
                 </div>
+
                 <div className="card-design">
-                    <img className="image" src="https://picsum.photos/400/150" />
-                    <h1 className="employer">ISU IT Dept.</h1>
-                    <p className="job-dates"> AUG '22 - DEC '22 </p>
-                    <p className="job-title">Technical Assistant II</p>
-                    <p className="job-description">Worked in a team of 10 to help service administration level machines
-                        throughout campus. Helped other departments order IT equiment when
-                        needed.</p>
+                    <div className="durham-image">
+                        <img style={{ opacity: "0" }} src="https://picsum.photos/325/150" alt="image" />
+                    </div>
+                    <img className="tech-stack" src={tech_stack3} alt="image" />
+                    <img className="employer" src={isu} alt="image" />
+                    <p className="job-dates"> JAN '22 - MAY '22 </p>
+                    <p className="job-title">Technical Assistant</p>
+                    <p className="job-description">Worked with a team of nine to monitor and administer administration level
+                        devices all throughout campus. Helped order IT equipment for various departments when needed. </p>
                 </div>
             </a.div>
         </>
