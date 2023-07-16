@@ -13,6 +13,7 @@ import { GlitchPass } from "/node_modules/three/examples/jsm/postprocessing/Glit
 import { UnrealBloomPass } from "/node_modules/three/examples/jsm/postprocessing/UnrealBloomPass.js";
 import {LoadingScreen} from "../LoadingScreen"
 import { Buttons } from "../Buttons";
+import "../styles/canvas_stylesheet.css";
 
 extend({ FilmPass, GlitchPass, UnrealBloomPass })
 
@@ -69,16 +70,8 @@ export default function Background() {
                 <Stars radius={1.2} depth={5} count={2000} factor={0.2} saturation={1} fade speed={2} />
             </Canvas>
             {start && <Buttons />}
-            { start && showSound && <p style={{
-                color: "white",
-                position: "absolute",
-                top: '0%',
-                right: '1%',
-                fontSize: '13px',
-                fontFamily: 'Minecraft',
-                cursor: 'pointer',
-                fontStyle: 'italic'
-            }} onClick={() => {pauseAudio(); setShowSound(false)}}> TURN SOUND OFF </p>}
+            {start && showSound && <p className={'soundtext'}
+            onClick={() => {pauseAudio(); setShowSound(false)}}> TURN SOUND OFF </p>}
             <LoadingScreen started={start} onStarted={() => setStart(true)} />
         </>
     );  

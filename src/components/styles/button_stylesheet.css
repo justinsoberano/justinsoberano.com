@@ -126,25 +126,25 @@
 
 @font-face {
     font-family: "Minecraft";
-    src: url("../fonts/minecraft/minecraftregular-bmg3-webfont.woff") format("woff");
+    src: url("../../fonts/minecraft/minecraftregular-bmg3-webfont.woff") format("woff");
     font-style: normal;
 }
 
 @font-face {
     font-family: "Minecraft";
-    src: url("../fonts/minecraft/minecraftitalic-r8mo-webfont.woff") format("woff");
+    src: url("../../fonts/minecraft/minecraftitalic-r8mo-webfont.woff") format("woff");
     font-style: italic;
 }
 
 @font-face {
     font-family: "Minecraft";
-    src: url("../fonts/minecraft/minecraftbold-nmk1-webfont.woff") format("woff");
+    src: url("../../fonts/minecraft/minecraftbold-nmk1-webfont.woff") format("woff");
     font-weight: bold;
 }
 
 @font-face {
     font-family: "Minecraft";
-    src: url("../fonts/minecraft/minecraftbolditalic-1y1e-webfont.woff") format("woff");
+    src: url("../../fonts/minecraft/minecraftbolditalic-1y1e-webfont.woff") format("woff");
     font-weight: bold;
     font-style: italic;
 }
