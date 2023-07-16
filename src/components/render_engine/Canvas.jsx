@@ -38,6 +38,11 @@ const audio = new Audio("/assets/audio/mc_moogcity_8bit.m4a");
 export default function Background() {
 
     const [start, setStart] = useState(false)
+    const [showSound, setShowSound] = useState(true)
+
+    const pauseAudio = () => {
+        audio.pause();
+    }
 
     useEffect(() => {
         if(start) {
@@ -64,6 +69,16 @@ export default function Background() {
                 <Stars radius={1.2} depth={5} count={2000} factor={0.2} saturation={1} fade speed={2} />
             </Canvas>
             {start && <Buttons />}
+            { start && showSound && <p style={{
+                color: "white",
+                position: "absolute",
+                top: '0%',
+                right: '1%',
+                fontSize: '13px',
+                fontFamily: 'Minecraft',
+                cursor: 'pointer',
+                fontStyle: 'italic'
+            }} onClick={() => {pauseAudio(); setShowSound(false)}}> TURN SOUND OFF </p>}
             <LoadingScreen started={start} onStarted={() => setStart(true)} />
         </>
     );  
