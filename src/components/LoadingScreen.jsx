@@ -1,6 +1,6 @@
 import React from "react";
 import { useProgress } from "@react-three/drei";
-import "./loadingstyle.css"
+import "./styles/loading_stylesheet.css"
 
 export const LoadingScreen = ({started, onStarted}) => {
     return (
@@ -9,28 +9,19 @@ export const LoadingScreen = ({started, onStarted}) => {
                 position: "absolute",
                 top: "0%",
             }}>
-                <p style= {{
-                    color: "white",
-                    fontSize: "20px",
-                    fontFamily: "Minecraft",
-                    fontWeight: "bold",
-                }}>Ready Player One</p>
-                <p style={{ 
+                <p className={"top-text"}>Ready Player One?</p>
+                <p className={"ready-text"} onClick={onStarted}> {'>'} INSERT COIN {'<'}</p>
+                <p style={{
                     position: "absolute",
-                    top: "70%",
+                    top: "90%",
                     color: "yellow",
                     fontSize: "20px",
                     fontFamily: "Minecraft",
                     fontStyle: "italic",
+                    letterSpacing: "2px",
+                    fontWeight: "bold",
+
                 }}> Website is still a work in progress!</p>
-                <p style={{
-                    position: "absolute",
-                    fontFamily: "Minecraft",
-                    fontSize: "20px",
-                    color: "white",
-                    top: "51%",
-                    cursor: "pointer",
-                }}onClick={onStarted}> {'>'} INSERT COIN {'<'}</p>
             </div>
         </>
     );

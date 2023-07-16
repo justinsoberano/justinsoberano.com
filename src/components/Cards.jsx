@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSpring, a } from '@react-spring/web';
-import './cardstyle.css';
+import './styles/card_stylesheet.css';
 
 
 export const Experience = props => {

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import {useSpring , a} from "@react-spring/web";
 import { Experience } from "./Cards";
-import "./styles.css";
-import "./cardstyle.css"
+import "./styles/button_stylesheet.css";
+import "./styles/card_stylesheet.css"
 
 /* Try to use maps to create the buttons */
 /* Use 'useTrail' to animate the buttons */

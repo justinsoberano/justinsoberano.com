@@ -28,3 +28,29 @@
     align-items: center;
     text-shadow: 0px 0px 10px white;
 }
+
+.top-text {
+    color: white;
+    font-size: 20px;
+    font-family: "Minecraft";
+    font-weight: bold;
+}
+
+.ready-text {
+    font-family: "Minecraft";
+    font-size: 20px;
+    color: white;
+    top: 51%;
+    cursor: pointer;
+    position: absolute;
+    letter-spacing: 3.3px;
+}
+
+.ready-text:hover {
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.ready-text:active {
+    color: lightgray;
+}
