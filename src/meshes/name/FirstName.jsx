@@ -21,7 +21,7 @@ const PositionSpring = (pX, pY, pZ, newX, delay) => {
     })
     } else if (viewport.aspect < 0.7) {
         return new useSpring({
-            from: { position: [0, 0, 0] },
+            from: { position: [0, 0, 7] },
             to: [
                 { position: [pX, pY, pZ] },
                 { position: [newX * 2.1, 0, -3] }
@@ -48,7 +48,7 @@ const rotationSpring = (rX, rY, rZ, mass, tension, friction, delay) => {
 const ScaleSpring = (delay) => {
     const { viewport } = useThree();
     const desktopScale = viewport.aspect;
-    const mobileScale = 1;
+    const mobileScale = 1.1;
     if(viewport.aspect >= 0.7) {
         return new useSpring({
             from: { scale: [0, 1, 0] }, 
