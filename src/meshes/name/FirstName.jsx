@@ -11,13 +11,13 @@ const PositionSpring = (pX, pY, pZ, newX, delay) => {
     const { viewport } = useThree();
     if(viewport.aspect >= 0.7) {
     return new useSpring({ 
-        from: { position: [0, 0, 0] }, 
+        from: { position: [0, 0, 7] }, 
         to: [
             { position: [pX, pY, pZ] },
             { position: [newX, 0, -1]}
         ],
         delay: delay,
-        config: { mass: 4, tension: 200, friction: 40, }
+        config: { mass: 4, tension: 200, friction: 70, }
     })
     } else if (viewport.aspect < 0.7) {
         return new useSpring({

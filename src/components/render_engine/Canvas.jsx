@@ -3,16 +3,16 @@ import * as THREE from "three";
 import { Canvas, extend, useThree, useFrame } from "@react-three/fiber";
 import { AsciiRenderer, Effects, Loader, Plane, Stars } from "@react-three/drei";
 import { LetterI, LetterJ, LetterU, 
-         LetterS, LetterT, LetterN } from "../meshes/name/FirstName";
+         LetterS, LetterT, LetterN } from "../../meshes/name/FirstName";
 import { LastLetterO1, LastLetterS, LastLetterA, 
          LastLetterB, LastLetterE, LastLetterN, 
-         LastLetterO2, LastLetterR } from "../meshes/name/LastName";
-import Pickaxe from "../meshes/geometries/Pickaxe";
+         LastLetterO2, LastLetterR } from "../../meshes/name/LastName";
+import Pickaxe from "../../meshes/geometries/Pickaxe";
 import { FilmPass } from "/node_modules/three/examples/jsm/postprocessing/FilmPass.js";
 import { GlitchPass } from "/node_modules/three/examples/jsm/postprocessing/GlitchPass.js";
 import { UnrealBloomPass } from "/node_modules/three/examples/jsm/postprocessing/UnrealBloomPass.js";
-import {LoadingScreen} from "./LoadingScreen"
-import { Buttons } from "./Buttons";
+import {LoadingScreen} from "../LoadingScreen"
+import { Buttons } from "../Buttons";
 
 extend({ FilmPass, GlitchPass, UnrealBloomPass })
 

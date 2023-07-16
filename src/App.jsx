@@ -1,5 +1,5 @@
 import React, { Suspense, useEffect, useState } from "react";
-import Background from "./components/Canvas";
+import Background from "./components/render_engine/Canvas";
 import {Buttons, Wxperience} from "./components/Buttons";
 import { Html, Plane } from "@react-three/drei";
 import { Experience } from "./components/Cards";
