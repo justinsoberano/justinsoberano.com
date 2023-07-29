@@ -1,0 +1,23 @@
+.back-button {
+    margin: 10px;
+    background: black;
+    padding: 15px;
+    border-radius: 15px;
+    text-align: center;
+    cursor: pointer;
+    width: 50px;
+    align-items: center;
+    border: 5px solid rgb(164, 32, 32);
+}
+
+.back-button:hover{
+    border: 8px solid rgb(164, 32, 32);
+    padding: 12px;
+    font-style: italic;
+}
+
+.back-button:active{
+    border: 8px solid rgb(101, 19, 19);
+    padding: 12px;
+}
+

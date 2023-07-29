@@ -161,7 +161,7 @@ export function LetterT(props) {
     const TMesh = useRef();
     const { viewport } = useThree();
     const positionAnimation = PositionSpring(viewport.aspect * 1.2, viewport.aspect * 1.2, 0, viewport.aspect / 2.2 , 300);
-    const rotationAnimation = rotationSpring(Math.PI / 1.3, 0, 1, 2, 200, 50, 100);
+    const rotationAnimation = rotationSpring(Math.PI / 1.3, 0, 1, 2, 200, 50, 200);
     const scale = ScaleSpring(200);
     FloatAnimation(TMesh, 5, 5, 7, Math.sin, Math.sin, Math.cos, 0.3);
 
@@ -187,7 +187,7 @@ export function LetterI(props) {
     const IMesh = useRef();
     const { viewport } = useThree();
     const positionAnimation = PositionSpring(viewport.aspect * 2, -viewport.aspect, 0, viewport.aspect * 1.12, 400);
-    const rotationAnimation = rotationSpring(Math.PI / 3, 0.4, 1, 3.5, 200, 50, 400);
+    const rotationAnimation = rotationSpring(Math.PI / 3, 0.4, 1, 3.5, 200, 50, 430);
     const scale = ScaleSpring(300);
     FloatAnimation(IMesh, 5, 5, 5, Math.sin, Math.sin, Math.sin, 0.8);
 
@@ -213,7 +213,7 @@ export function LetterN(props) {
     const NMesh = useRef();
     const { viewport } = useThree();
     const positionAnimation = PositionSpring(viewport.aspect * 2.5, 0.1, 0, viewport.aspect * 1.85, 500);
-    const rotationAnimation = rotationSpring(Math.PI / 2, -0.5, 1.2, 3.5, 200, 50, 500);
+    const rotationAnimation = rotationSpring(Math.PI / 2, -0.5, 1.2, 3.5, 200, 50, 550);
     const scale = ScaleSpring(400);
     FloatAnimation(NMesh, 5, 5, 5, Math.sin, Math.sin, Math.cos, 0.8);
 
