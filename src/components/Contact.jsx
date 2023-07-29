@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useSpring, a } from '@react-spring/web';
 import './styles/button_stylesheet.css';
-import './styles/backbutton_stylesheet.css';
+import './styles/contact_stylesheet.css';
+import PDF from "../resume/website_resume.pdf"
 
 export const Contact = props => {
 
@@ -16,39 +17,48 @@ export const Contact = props => {
         })
     }
 
+    function openInNewTab(url) {
+        window.open(url, '_blank', 'noreferrer');
+    }
+
     return (
         <div>
 
-            <a.div className="flex-container" style={{ ...ContactSpring() }}>
+            <a.div className="contact-flex-container" style={{ ...ContactSpring() }}>
 
-                <a.div className="button-design noselect white"
+                <a.div className="button-design noselect linkedin-blue"
+                    onClick={() => openInNewTab("https://www.linkedin.com/in/justinsoberano/")}
                     style={{ ...ContactSpring() }}>
-                    <span className="button-text">LinkedIn</span>
+                    <span className="button-text">linkedin</span>
                 </a.div>
 
-                <a.div className="button-design noselect white"
+                <a.div className="button-design noselect github-gray"
+                    onClick={() => openInNewTab("https://github.com/justinsoberano")}
                     style={{ ...ContactSpring() }}>
-                    <span className="button-text">GitHub</span>
+                    <span className="button-text">github</span>
                 </a.div>
 
-                <a.div className="button-design noselect white" 
+                <a.div className="button-design noselect light-purple" 
+                    onClick={() => openInNewTab(PDF)}
                     style={{ ...ContactSpring() }}>
-                    <span className="button-text">Resume</span>
+                    <span className="button-text">resume</span>
                 </a.div>
 
-                <a.div className="button-design noselect white"
+                <a.div className="button-design noselect rainbow"
+                    onClick={() => openInNewTab("mailto:me@justinsoberano.com")}
                     style={{ ...ContactSpring() }}>
-                    <span className="button-text">Email</span>
+
+                    <span className="button-text">email me!</span>
                 </a.div>
 
-                <a.div className="back-button"
+                <a.div className="contact-back-button"
                     onClick={() => {
                         props.changeShow(true);
                         props.changeTimer(100)
                         props.changeShowContact(true)
                     }}
                     style={{ ...ContactSpring() }}>
-                    <span className="button-text">Back</span>
+                    <span className="contact-button-text">back</span>
                 </a.div>
 
             </a.div>
