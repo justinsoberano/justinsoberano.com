@@ -49,6 +49,10 @@
     font-size: 20px;
 }
 
+.white {
+    border: 5px solid white;
+}
+
 .yellow {
     border: 5px solid yellow;
 }
@@ -100,6 +104,20 @@
 
 .pink:hover {
     border: 8px solid pink;
+    padding: 12px;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.white:hover {
+    border: 8px solid white;
+    padding: 12px;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.white:active {
+    border: 8px solid rgb(198, 198, 198);
     padding: 12px;
     font-weight: bold;
     font-style: italic;

@@ -6,7 +6,7 @@ import App from './App.jsx';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <div style={{ width: "100vw", height: "100vh"}}>
+    <div style={{ width: "100svw", height: "100svh"}}>
       <App />
     </div>
   </React.StrictMode>

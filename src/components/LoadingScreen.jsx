@@ -1,5 +1,4 @@
 import React from "react";
-import { useProgress } from "@react-three/drei";
 import "./styles/loading_stylesheet.css"
 
 export const LoadingScreen = ({started, onStarted}) => {
@@ -13,7 +12,7 @@ export const LoadingScreen = ({started, onStarted}) => {
                 <p className={"ready-text"} onClick={onStarted}> {'>'} INSERT COIN {'<'}</p>
                 <p style={{
                     position: "absolute",
-                    top: "90%",
+                    top: "70%",
                     color: "yellow",
                     fontSize: "20px",
                     fontFamily: "Minecraft",
