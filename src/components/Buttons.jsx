@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {useSpring , a} from "@react-spring/web";
 import { Experience } from "./Experience";
 import { Contact } from "./Contact";

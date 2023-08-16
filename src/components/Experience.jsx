@@ -7,7 +7,6 @@ import tech_stack3 from "../images/experience_images/Tech_3.png";
 import nasa from "../images/experience_images/nasa_logo_white.png";
 import isu from "../images/experience_images/isu.png";
 
-
 export const Experience = props => {
 
     let toggle = props.s
