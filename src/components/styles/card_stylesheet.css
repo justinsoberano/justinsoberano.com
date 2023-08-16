@@ -1,7 +1,22 @@
+
+::-webkit-scrollbar {
+    height: 12px;
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: lightgray;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-track-piece {
+    display: none;
+}
+
 .container {
     overflow: auto;
     white-space: nowrap;
-    margin-top: -380px;
+    margin-top: -400px;
     position: relative;
 }
 

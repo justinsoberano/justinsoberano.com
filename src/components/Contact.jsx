@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useSpring, a } from '@react-spring/web';
 import './styles/button_stylesheet.css';
 import './styles/contact_stylesheet.css';
