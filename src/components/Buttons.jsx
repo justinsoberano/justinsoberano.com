@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {useSpring , a} from "@react-spring/web";
 import { Experience } from "./Experience";
 import { Contact } from "./Contact";
+import { Projects } from "./Projects";
 import "./styles/button_stylesheet.css";
 import "./styles/card_stylesheet.css"
 
@@ -36,10 +37,12 @@ export const Buttons = () => {
                     <span className="button-text">experiences</span>
                 </a.div>
                 
-                <a.div className="unimplemented-button noselect" 
+                <a.div className="button-design noselect aqua"
+                       onClick={() => { setButtons(!showButtons); setProjects(!showProjects); }} 
                        style={{ ...ButtonSprings(timer + 100) }}>
-                    <span className="unimplemented-button-text">projects</span>
+                    <span className="button-text">projects</span>
                 </a.div>
+
                 <a.div className="unimplemented-button noselect" style={{ ...ButtonSprings(timer + 150) }}>
                     <span className="unimplemented-button-text">involvement</span>
                 </a.div>
@@ -48,17 +51,6 @@ export const Buttons = () => {
                        style={{ ...ButtonSprings(timer + 200) }}>
                     <span className="button-text">contact</span>
                 </a.div>
-            
-            {/* <a.div className="button-design noselect aqua" onClick={() => set(!show)} style={{...ButtonSprings(timer + 100)}}>
-                    <span className="button-text">projects</span>
-                </a.div>
-            <a.div className="button-design noselect coral" onClick={() => set(!show)} style={{ ...ButtonSprings(timer + 150)}}>
-                    <span className="button-text">involvement</span>
-                </a.div>
-            <a.div className="button-design noselect pink" onClick={() => set(!show)} style={{ ...ButtonSprings(timer + 200)}}>
-                    <span className="button-text">contact</span>
-                </a.div> */}
-
             </a.div>
             
             <Experience
@@ -74,6 +66,14 @@ export const Buttons = () => {
                 changeShowContact = {showContact => setContact(showContact)}
                 s = { showContact }
             />
+            
+            <Projects 
+                changeShow={show => setButtons(show)}
+                changeTimer={timer => setTimer(timer)}
+                changeShowProjects={showProjects => setProjects(showProjects)}
+                s = { showProjects } 
+            />
+
 
         </div>
 

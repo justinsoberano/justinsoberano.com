@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useSpring, a } from '@react-spring/web';
 import './styles/card_stylesheet.css';
 import tech_stack1 from "../images/experience_images/Tech_1.png";
@@ -33,7 +33,7 @@ export const Experience = props => {
                     <p className="job-dates"> JUN '23 - AUG '23 </p>
                     <p className="job-title">AI/ML - Computer Vision Intern</p>
                     <p className="job-description">Developed an image to 3D machine learning model, using image view synthesis,
-                        neural radiance fields, and global local paths networks. This model will be used for
+                        depth analysis, and object detection. This model will be used for
                         quick creation of 3D assets for hyper-realistic environments.</p>
                 </div>
 

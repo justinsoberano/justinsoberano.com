@@ -2,15 +2,12 @@
 /* class = . */
 /* id = # */
 
-/* clean up */
-
 .flex-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     position: absolute;
-    /* Use the other approach for cleaner css */
     left: 0;
     right: 0;
     margin-left: auto;
