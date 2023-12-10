@@ -1,7 +1,7 @@
 import React, { Suspense, useEffect, useState } from "react";
 import * as THREE from "three";
 import { Canvas, extend, useThree, useFrame } from "@react-three/fiber";
-import { AsciiRenderer, Effects, Loader, Plane, Stars } from "@react-three/drei";
+import { Effects, Stars } from "@react-three/drei";
 import { LetterI, LetterJ, LetterU, 
          LetterS, LetterT, LetterN } from "../../meshes/name/FirstName";
 import { LastLetterO1, LastLetterS, LastLetterA, 
@@ -109,7 +109,6 @@ const Lighting = () => {
     return (
         <group>
             <ambientLight intensity={0.7} />
-            {/* <spotLight position={[10, 15, 10]} angle={0.4} /> */}
         </group>
     )
 }
@@ -119,12 +118,8 @@ const EffectsComposer = () => {
     return (
         <group>
             <Effects>
-                {/* Looks a bit too strong on desktop mode */}
                 <unrealBloomPass attachArray={"passes"} args={[undefined, bloom, 2.2, 0.7]} />
-                {/* <glitchPass attachArray={"passes"}/> */}
                 <filmPass attachArray={"passes"} args={[0.5, 0.5, 1512, false]} />
-                {/* <AsciiRenderer /> */}
-                {/* fix later */}
             </Effects>
         </group>
     )

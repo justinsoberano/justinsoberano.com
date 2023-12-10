@@ -15,7 +15,6 @@
     overflow: auto;
     white-space: nowrap;
     margin-top: -250px;
-    position: relative;
     zoom: 0.8;
 }
 
@@ -88,9 +87,6 @@
     background: black;
     text-align: center;
     border-radius: 15px;
-    position: absolute;
-    bottom: 0;
-    margin-bottom: 10px;
     border: 4px solid rgb(164, 32, 32);
 }
 
