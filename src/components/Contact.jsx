@@ -18,7 +18,7 @@ export const Contact = props => {
     }
 
     function openInNewTab(url) {
-        window.open(url, '_blank', 'noreferrer');
+        window.open(url, '_blank');
     }
 
     return (

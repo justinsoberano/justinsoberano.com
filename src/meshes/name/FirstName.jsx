@@ -3,6 +3,7 @@ import { useGLTF } from "@react-three/drei";
 import { useSpring, animated } from "@react-spring/three";
 import { useThree, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
+import { randFloat, randInt } from "three/src/math/MathUtils";
 
 /* Turn the functions to ternary notations for cleaner code */
 /* possibly create the useSpring functions in a separate helper file */
@@ -17,6 +18,7 @@ const PositionSpring = (pX, pY, pZ, newX, delay) => {
             { position: [newX, 0, -1]}
         ],
         delay: delay,
+        // 4, 200, 70
         config: { mass: 4, tension: 200, friction: 70, }
     })
     } else if (viewport.aspect < 0.7) {
@@ -27,7 +29,7 @@ const PositionSpring = (pX, pY, pZ, newX, delay) => {
                 { position: [newX * 2.1, 0, -3] }
             ],
             delay: delay,
-            config: { mass: 4, tension: 200, friction: 40, }
+            config: { mass: 4, tension: 250, friction: 40, }
         })
     }
 }
@@ -66,10 +68,11 @@ const ScaleSpring = (delay) => {
     }
 }
 
-const FloatAnimation = (mesh, rZ, rY, pY, a, b, c, multiplier) => {
-    const rotationZ = rZ / 30000; 
-    const rotationY = rY / 30000; 
-    const positionY = pY / 30000;
+const FloatAnimation = (mesh, a, b, c) => {
+    const rotationZ = randInt(0, 5) / 3000; 
+    const rotationY = randInt(0, 10) / 30000; 
+    const positionY = randInt(0, 10) / 30000;
+    const multiplier = randFloat(0.3, 1)
     return new useFrame(({ clock }) => {
             mesh.current.rotation.z += a(clock.getElapsedTime()) * rotationZ;
             mesh.current.rotation.y += b(clock.getElapsedTime()) * rotationY;
@@ -84,7 +87,7 @@ export function LetterJ(props) {
     const positionAnimation = PositionSpring(-viewport.aspect * 2.5, 0, 0,-viewport.aspect * 2.1 ,0);
     const rotationAnimation = rotationSpring(Math.PI / 2, 0.6, 6, 3.5, 200, 50, 0);
     const scale = ScaleSpring(0);
-    FloatAnimation(JMesh, 5, 5, 7, Math.cos, Math.sin, Math.sin, 1);
+    FloatAnimation(JMesh, Math.cos, Math.sin, Math.sin);
 
     const { nodes } = useGLTF("assets/letters/bit_j.gltf");
     return (
@@ -110,7 +113,7 @@ export function LetterU(props) {
     const positionAnimation = PositionSpring(-viewport.aspect * 1.5, -viewport.aspect * 1.6, 0, -viewport.aspect * 1.2, 100);  
     const rotationAnimation = rotationSpring(Math.PI / 4, -0.4, 3, 3.5, 200, 50, 100);
     const scale = ScaleSpring(100);
-    FloatAnimation(UMesh, 5, 7, 7, Math.cos, Math.cos, Math.cos, 0.7)
+    FloatAnimation(UMesh, Math.cos, Math.cos, Math.cos)
 
     const { nodes } = useGLTF("assets/letters/bit_u.gltf");
     return (
@@ -137,7 +140,7 @@ export function LetterS(props) {
                                                                 /* mass, tension, friction */
     const rotationAnimation = rotationSpring(Math.PI/1.5, 0, -1, 3.5, 200, 55, 0);
     const scale = ScaleSpring(200);
-    FloatAnimation(SMesh, 5, 5, 10, Math.cos, Math.cos, Math.cos, 0.6);
+    FloatAnimation(SMesh, Math.cos, Math.cos, Math.cos);
 
     const { nodes } = useGLTF("assets/letters/bit_s.gltf");
     return (
@@ -163,7 +166,7 @@ export function LetterT(props) {
     const positionAnimation = PositionSpring(viewport.aspect * 1.2, viewport.aspect * 1.2, 0, viewport.aspect / 2.2 , 300);
     const rotationAnimation = rotationSpring(Math.PI / 1.3, 0, 1, 2, 200, 50, 200);
     const scale = ScaleSpring(200);
-    FloatAnimation(TMesh, 5, 5, 7, Math.sin, Math.sin, Math.cos, 0.3);
+    FloatAnimation(TMesh, Math.sin, Math.sin, Math.cos);
 
     const { nodes } = useGLTF("assets/letters/bit_t.gltf");
     return (
@@ -189,7 +192,7 @@ export function LetterI(props) {
     const positionAnimation = PositionSpring(viewport.aspect * 2, -viewport.aspect, 0, viewport.aspect * 1.12, 400);
     const rotationAnimation = rotationSpring(Math.PI / 3, 0.4, 1, 3.5, 200, 50, 430);
     const scale = ScaleSpring(300);
-    FloatAnimation(IMesh, 5, 5, 5, Math.sin, Math.sin, Math.sin, 0.8);
+    FloatAnimation(IMesh, Math.sin, Math.sin, Math.sin);
 
     const { nodes } = useGLTF("assets/letters/bit_i.gltf");
     return (
@@ -215,7 +218,7 @@ export function LetterN(props) {
     const positionAnimation = PositionSpring(viewport.aspect * 2.5, 0.1, 0, viewport.aspect * 1.85, 500);
     const rotationAnimation = rotationSpring(Math.PI / 2, -0.5, 1.2, 3.5, 200, 50, 550);
     const scale = ScaleSpring(400);
-    FloatAnimation(NMesh, 5, 5, 5, Math.sin, Math.sin, Math.cos, 0.8);
+    FloatAnimation(NMesh, Math.sin, Math.sin, Math.cos);
 
     const { nodes } = useGLTF("assets/letters/bit_n.gltf");
     return (

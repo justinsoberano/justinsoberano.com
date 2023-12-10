@@ -13,13 +13,13 @@ function Position(mX, mY, mZ, dX, dY, dZ) {
     if(viewport.aspect >= 0.7) {
         return new useSpring({
             to: { position: [dX, desktopY, dZ] },
-            config: {mass: 2, tension: 200, friction: 50},
+            config: {mass: 2, tension: 300, friction: 50},
             delay: 1000
         })
     } else if (viewport.aspect < 0.7) {
         return new useSpring({
             to: {position: [mX, mY, mZ]},
-            config: { mass: 2, tension: 200, friction: 50},
+            config: { mass: 2, tension: 300, friction: 50},
             delay: 1000
         })
     }
@@ -33,14 +33,14 @@ function Scale() {
         return new useSpring({ 
             from: {scale: [0, 0 ,0]},
             to: {scale: [desktopScale, 0.3, desktopScale]},
-            config: { mass: 2, tension: 200, friction: 50, },
+            config: { mass: 5, tension: 500, friction: 50, },
             delay: 2500,
         });
     } else if (viewport.aspect < 0.7) {
         return new useSpring({
             from: {scale: [0, 0, 0]},
             to: {scale: [mobileScale, 0.2, mobileScale]},
-            config: { mass: 2, tension: 200, friction: 50, },
+            config: { mass: 5, tension: 500, friction: 50, },
             delay: 2500,
         });
     }
