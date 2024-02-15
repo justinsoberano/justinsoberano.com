@@ -45,8 +45,8 @@ export const Experience = props => {
                     <img className="employer" src={nasa} alt="image" />
                     <p className="job-dates"> AUG '22 - DEC '22 </p>
                     <p className="job-title">SWE - Digital Twins Intern</p>
-                    <p className="job-description">In a team of four, we developed a virtual
-                        hyperrealistic Martian environment. These environments will be used to train
+                    <p className="job-description">In a team of four, we developed digital twins
+                        for future space missions. These digital twins will be used to train
                         astronauts for future Artemis missions. Currently being used by 
                         <a href="https://www.nasa.gov/chapea" target="_blank"
                         style={{color: "lightblue",
