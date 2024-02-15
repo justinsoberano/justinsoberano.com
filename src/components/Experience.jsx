@@ -31,10 +31,9 @@ export const Experience = props => {
                     <img className="tech-stack" src={tech_stack2} alt="image" />
                     <img className="employer" src={nasa} alt="image" />
                     <p className="job-dates"> JUN '23 - AUG '23 </p>
-                    <p className="job-title">AI/ML - Computer Vision Intern</p>
-                    <p className="job-description">Developed an image to 3D machine learning model, using image view synthesis,
-                        depth analysis, and object detection. This model will be used for
-                        quick creation of 3D assets for hyper-realistic environments.</p>
+                    <p className="job-title">SWE - Spacesuits Intern</p>
+                    <p className="job-description">Developed a telemetry collection system for spacesuits.
+                        This system will be used for mental state determination when astronauts go to Mars! :D </p>
                 </div>
 
 
@@ -45,7 +44,7 @@ export const Experience = props => {
                     <img className="tech-stack" src={tech_stack1} alt="image" />
                     <img className="employer" src={nasa} alt="image" />
                     <p className="job-dates"> AUG '22 - DEC '22 </p>
-                    <p className="job-title">XR/VR - Digital Twins Intern</p>
+                    <p className="job-title">SWE - Digital Twins Intern</p>
                     <p className="job-description">In a team of four, we developed a virtual
                         hyperrealistic Martian environment. These environments will be used to train
                         astronauts for future Artemis missions. Currently being used by 
