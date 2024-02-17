@@ -2,7 +2,7 @@ import React from 'react';
 import { useSpring, a } from '@react-spring/web';
 import './styles/button_stylesheet.css';
 import './styles/contact_stylesheet.css';
-import PDF from "../resume/website_resume.pdf"
+import PDF from "../resume/resume.pdf"
 
 export const Contact = props => {
 

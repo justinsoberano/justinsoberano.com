@@ -14,13 +14,13 @@ export const LoadingScreen = ({started, onStarted}) => {
                     position: "absolute",
                     top: "70%",
                     color: "yellow",
-                    fontSize: "20px",
+                    fontSize: "15px",
                     fontFamily: "Minecraft",
-                    fontStyle: "italic",
+                    fontStyle: "normal",
                     letterSpacing: "2px",
                     fontWeight: "bold",
 
-                }}> Website is still a work in progress!</p>
+                }}> !! Work in progress !! </p>
             </div>
         </>
     );
