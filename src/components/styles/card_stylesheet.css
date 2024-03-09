@@ -50,7 +50,8 @@
     white-space: normal;
     display: inline-block;
     margin: 10px;
-    background: black;
+    background-color: rgba(0, 0, 0, 0.758);
+    backdrop-filter: blur(10px);
     border-radius: 15px;
     width: 450px;
     height: 350px;

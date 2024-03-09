@@ -19,7 +19,7 @@ const PositionSpring = (pX, pY, pZ, newX, delay) => {
         ],
         delay: delay,
         // 4, 200, 70
-        config: { mass: 4, tension: 200, friction: 70, }
+        config: { mass: 4, tension: 200, friction: 70 }
     })
     } else if (viewport.aspect < 0.7) {
         return new useSpring({
