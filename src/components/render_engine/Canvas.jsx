@@ -1,7 +1,7 @@
 import React, { Suspense, useEffect, useState } from "react";
 import * as THREE from "three";
 import { Canvas, extend, useThree, useFrame } from "@react-three/fiber";
-import { Effects, Sphere, Stars, Plane } from "@react-three/drei";
+import { Effects, Sphere, Stars, Plane, Fisheye, Hud, Cloud } from "@react-three/drei";
 import { LetterI, LetterJ, LetterU, 
          LetterS, LetterT, LetterN } from "../../meshes/name/FirstName";
 import { LastLetterO1, LastLetterS, LastLetterA, 
@@ -54,6 +54,7 @@ export default function Background() {
     return (
         <>
             <Canvas dpr={1}>
+                <Stars radius={0.1} depth={30} count={2000} factor={0.7} saturation={2} fade speed={4} />
                 <Suspense fallback={null}> {start && 
                     <>
                         <color attach={"background"} args={["rgb(0, 0, 0)"]} />
@@ -66,7 +67,6 @@ export default function Background() {
                     </>
                 } </Suspense>
                 <EffectsComposer />
-                <Stars radius={1.2} depth={5} count={2000} factor={0.2} saturation={1} fade speed={2} />
             </Canvas>
             {start && <Buttons />}
             {start && showSound && <p className={'soundtext'}
@@ -119,7 +119,7 @@ const EffectsComposer = () => {
         <group>
             <Effects>
                 <unrealBloomPass attachArray={"passes"} args={[undefined, bloom, 2.2, 0.7]} />
-                <filmPass attachArray={"passes"} args={[0.5, 0.5, 1024, false]} />
+                <filmPass attachArray={"passes"} args={[0.7, 0.5, 1024, false]} />
             </Effects>
         </group>
     )

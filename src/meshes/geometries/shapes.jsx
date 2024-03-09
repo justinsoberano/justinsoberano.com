@@ -18,26 +18,31 @@ export function Sphere_one() {
     const sphereRef = useRef();
 
     useFrame((state, delta) => {
-      sphereRef.current.rotation.x += 0.01;
-      sphereRef.current.rotation.y += 0.01;
+      sphereRef.current.rotation.x += 0.003;
+      sphereRef.current.rotation.y += 0.003;
     });
 
     const sphereRefMini = useRef();
 
     useFrame((state, delta) => {
-      sphereRefMini.current.rotation.x += 0.005;
-      sphereRefMini.current.rotation.y += 0.005;
+      sphereRefMini.current.rotation.x += 0.001;
+      sphereRefMini.current.rotation.y += 0.001;
     });
 
     const sphereRefTwo = useRef();
 
     useFrame((state, delta) => {
-      sphereRefTwo.current.rotation.x += 0.005;
-      sphereRefTwo.current.rotation.y += 0.005;
+      sphereRefTwo.current.rotation.x += 0.003;
+      sphereRefTwo.current.rotation.y += 0.004;
     });
 
     const pointLightRef = useRef();
     const pointLightSpringAnimation = pointLightSpring();
+
+    const ringRef = useRef();
+    useFrame((state, delta) => {
+      ringRef.current.rotation.z += 0.003;
+    });
 
     return (
         <group>
@@ -68,7 +73,7 @@ export function Sphere_one() {
                 {/* <meshNormalMaterial /> */}
             </ Sphere>
 
-            <Torus args={[1,0.1]} rotation={[2, 2.6, 0]} position={[15, -10, -30]} scale={15}>
+            <Torus args={[1, 0.1, 10, 10]} rotation={[2, 2.6, 0]} position={[15, -10, -30]} scale={15} ref={ringRef}>
                 <meshStandardMaterial attach="material" color={"purple"}/>
             </Torus>
 
