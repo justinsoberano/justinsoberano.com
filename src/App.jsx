@@ -36,10 +36,10 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    const isIOS = /iPad|iPhone|iPod/.test(navigator.platform);
+    const isIpad = navigator.platform === 'iPad';
     const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-    if (isIOS && isSafari) {
-      alert('This webpage is not optiimized for Safari on iPad. Working on getting it to work properly :)');
+    if (isIpad && isSafari) {
+      alert("This website is not optimized for Safari on iPad. Working on a fix :)");
     }
   }, []);
 
