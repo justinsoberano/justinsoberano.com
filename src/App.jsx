@@ -27,6 +27,22 @@ var styles = {
 }
 
 export default function App() {
+
+  useEffect(() => {
+    const isFirefox = typeof InstallTrigger !== 'undefined';
+    if (isFirefox) {
+      alert("This website is not optimized for Firefox. Currently working on a fix :)")
+    }
+  }, []);
+
+  useEffect(() => {
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.platform);
+    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+    if (isIOS && isSafari) {
+      alert('This webpage is not optiimized for Safari on iPad. Working on getting it to work properly :)');
+    }
+  }, []);
+
   return (
     <>
       <Background />
