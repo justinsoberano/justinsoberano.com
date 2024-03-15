@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.c7119b28.css",
-    "main.js": "/static/js/main.5be96c49.js",
+    "main.js": "/static/js/main.f8faeacc.js",
     "static/media/old-website-project.gif": "/static/media/old-website-project.46bcbb890c450d37176b.gif",
     "static/media/website-project.gif": "/static/media/website-project.ffbfc71a2659a8cfdd69.gif",
     "static/media/spinder-project.gif": "/static/media/spinder-project.a51bae2f68e43e2c8c62.gif",
@@ -48,10 +48,10 @@
     "static/media/minecraftbold-nmk1-webfont.woff2": "/static/media/minecraftbold-nmk1-webfont.a17dad614a8c2121b2a5.woff2",
     "index.html": "/index.html",
     "main.c7119b28.css.map": "/static/css/main.c7119b28.css.map",
-    "main.5be96c49.js.map": "/static/js/main.5be96c49.js.map"
+    "main.f8faeacc.js.map": "/static/js/main.f8faeacc.js.map"
   },
   "entrypoints": [
     "static/css/main.c7119b28.css",
-    "static/js/main.5be96c49.js"
+    "static/js/main.f8faeacc.js"
   ]
 }
