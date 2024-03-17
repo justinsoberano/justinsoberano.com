@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.effde77c.css",
-    "main.js": "/static/js/main.e0df9a40.js",
+    "main.css": "/static/css/main.0253861f.css",
+    "main.js": "/static/js/main.3647f25c.js",
     "static/media/JetBrainsMono-BoldItalic.woff2": "/static/media/JetBrainsMono-BoldItalic.c8aab241a20a44900acc.woff2",
     "static/media/JetBrainsMono-SemiBoldItalic.woff2": "/static/media/JetBrainsMono-SemiBoldItalic.c806f3da5871fdfeeb65.woff2",
     "static/media/JetBrainsMono-MediumItalic.woff2": "/static/media/JetBrainsMono-MediumItalic.cbdbf29e8995bf6c5b78.woff2",
@@ -23,11 +23,11 @@
     "static/media/minecraftregular-bmg3-webfont.woff": "/static/media/minecraftregular-bmg3-webfont.df1cb6372024ba385c2f.woff",
     "static/media/minecraftbold-nmk1-webfont.woff": "/static/media/minecraftbold-nmk1-webfont.f26e724184a579e43a11.woff",
     "index.html": "/index.html",
-    "main.effde77c.css.map": "/static/css/main.effde77c.css.map",
-    "main.e0df9a40.js.map": "/static/js/main.e0df9a40.js.map"
+    "main.0253861f.css.map": "/static/css/main.0253861f.css.map",
+    "main.3647f25c.js.map": "/static/js/main.3647f25c.js.map"
   },
   "entrypoints": [
-    "static/css/main.effde77c.css",
-    "static/js/main.e0df9a40.js"
+    "static/css/main.0253861f.css",
+    "static/js/main.3647f25c.js"
   ]
 }
