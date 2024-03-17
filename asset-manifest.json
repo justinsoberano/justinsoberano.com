@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.a3c0d72f.css",
-    "main.js": "/static/js/main.ab19c98b.js",
+    "main.css": "/static/css/main.4c3f389e.css",
+    "main.js": "/static/js/main.3c2dd062.js",
     "static/media/JetBrainsMono-BoldItalic.woff2": "/static/media/JetBrainsMono-BoldItalic.c8aab241a20a44900acc.woff2",
     "static/media/JetBrainsMono-SemiBoldItalic.woff2": "/static/media/JetBrainsMono-SemiBoldItalic.c806f3da5871fdfeeb65.woff2",
     "static/media/JetBrainsMono-MediumItalic.woff2": "/static/media/JetBrainsMono-MediumItalic.cbdbf29e8995bf6c5b78.woff2",
@@ -20,17 +20,14 @@
     "static/media/JetBrainsMono-Thin.woff2": "/static/media/JetBrainsMono-Thin.659df8a75626797e673b.woff2",
     "static/media/minecraftitalic-r8mo-webfont.woff": "/static/media/minecraftitalic-r8mo-webfont.8544e3a06ea054518267.woff",
     "static/media/minecraftbolditalic-1y1e-webfont.woff": "/static/media/minecraftbolditalic-1y1e-webfont.93d96c714265d3b3a29b.woff",
-    "static/media/minecraftitalic-r8mo-webfont.woff2": "/static/media/minecraftitalic-r8mo-webfont.9568e0ba1ea330431ba8.woff2",
     "static/media/minecraftregular-bmg3-webfont.woff": "/static/media/minecraftregular-bmg3-webfont.df1cb6372024ba385c2f.woff",
     "static/media/minecraftbold-nmk1-webfont.woff": "/static/media/minecraftbold-nmk1-webfont.f26e724184a579e43a11.woff",
-    "static/media/minecraftregular-bmg3-webfont.woff2": "/static/media/minecraftregular-bmg3-webfont.25a62900f187e2074a92.woff2",
-    "static/media/minecraftbold-nmk1-webfont.woff2": "/static/media/minecraftbold-nmk1-webfont.a17dad614a8c2121b2a5.woff2",
     "index.html": "/index.html",
-    "main.a3c0d72f.css.map": "/static/css/main.a3c0d72f.css.map",
-    "main.ab19c98b.js.map": "/static/js/main.ab19c98b.js.map"
+    "main.4c3f389e.css.map": "/static/css/main.4c3f389e.css.map",
+    "main.3c2dd062.js.map": "/static/js/main.3c2dd062.js.map"
   },
   "entrypoints": [
-    "static/css/main.a3c0d72f.css",
-    "static/js/main.ab19c98b.js"
+    "static/css/main.4c3f389e.css",
+    "static/js/main.3c2dd062.js"
   ]
 }
