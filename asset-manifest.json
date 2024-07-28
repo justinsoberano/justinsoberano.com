@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.1d3c2303.css",
-    "main.js": "/static/js/main.eceb2f86.js",
+    "main.css": "/static/css/main.99314647.css",
+    "main.js": "/static/js/main.390adb84.js",
     "static/media/minecraftitalic-r8mo-webfont.woff": "/static/media/minecraftitalic-r8mo-webfont.8544e3a06ea054518267.woff",
     "static/media/minecraftbolditalic-1y1e-webfont.woff": "/static/media/minecraftbolditalic-1y1e-webfont.93d96c714265d3b3a29b.woff",
     "static/media/minecraftregular-bmg3-webfont.woff": "/static/media/minecraftregular-bmg3-webfont.df1cb6372024ba385c2f.woff",
@@ -9,7 +9,7 @@
     "index.html": "/index.html"
   },
   "entrypoints": [
-    "static/css/main.1d3c2303.css",
-    "static/js/main.eceb2f86.js"
+    "static/css/main.99314647.css",
+    "static/js/main.390adb84.js"
   ]
 }
