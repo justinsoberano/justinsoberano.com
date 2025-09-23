@@ -29,7 +29,7 @@ export const InvolvementTitle = styled.p`
   margin-left: 15px;
   margin-top: 15px;
   font-weight: bold;
-  font-family: 'San Francisco';
+  font-family: 'Inter';
   color: white;
   text-align: left;
 `;
@@ -37,11 +37,12 @@ export const InvolvementTitle = styled.p`
 export const InvolvementDesc = styled.p`
   font-size: 14px;
   margin-left: 15px;
-  font-family: 'San Francisco';
+  font-family: 'Inter';
   color: white;
   margin-top: -20px;
   text-align: left;
   margin-right: 200px;
+  letter-spacing: -0.3px;
 `;
 
 export const InvolvementContainer = styled.div`

@@ -44,7 +44,7 @@ export const ExperienceEmp = styled.img`
 `;
 
 export const ExperienceDate = styled.p`
-  font-family: 'San Francisco';
+  font-family: 'Inter';
   font-weight: bold;
   font-size: 16px;
   color: gray;
@@ -54,8 +54,8 @@ export const ExperienceDate = styled.p`
 `;
 
 export const ExperienceTitle = styled.p`
-  font-family: 'San Francisco';
-  font-weight: 800;
+  font-family: 'Inter';
+  font-weight: 700;
   font-size: 18px;
   color: white;
   text-align: left;
@@ -65,15 +65,15 @@ export const ExperienceTitle = styled.p`
 `;
 
 export const ExperienceDesc = styled.p`
-  font-family: 'San Francisco';
-  font-weight: 400;
+  font-family: 'Inter';
+  font-weight: 300;
   font-size: 16px;
   color: white;
   text-align: left;
   margin-left: 13.5px;
   margin-right: 13.5px;
   margin-top: -10px;
-  word-spacing: 0px;
+  letter-spacing: -0.3px;
 `;
 
 export const Back = styled.div`

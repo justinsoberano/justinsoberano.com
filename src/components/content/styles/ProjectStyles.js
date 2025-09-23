@@ -49,7 +49,7 @@ export const ProjectTitle = styled.div`
   margin-left: 15px;
   margin-top: 20px;
   font-weight: bold;
-  font-family: 'San Francisco';
+  font-family: 'Inter';
   color: white;
   text-align: left;
 `;
@@ -57,11 +57,12 @@ export const ProjectTitle = styled.div`
 export const ProjectDesc = styled.div`
   font-size: 14px;
   margin-left: 15px;
-  font-family: 'San Francisco';
+  font-family: 'Inter';
   color: white;
   margin-top: 4px;
   text-align: left;
   margin-right: 200px;
+  letter-spacing: -0.3px;
 `;
 
 export const ProjectBackButton = styled.div`
