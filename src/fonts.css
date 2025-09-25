@@ -1,0 +1,17 @@
+@font-face {
+  font-family: 'editorial-old';
+  src: url('//pangrampangram.com/cdn/shop/files/PPEditorialOld-Variable.woff2?v=8251023655231862734') format('woff2-variations');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'editorial-old';
+  src: url('//pangrampangram.com/cdn/shop/files/PPEditorialOld-ItalicVariable.woff2?v=18399878115014437250') format('woff2-variations');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');

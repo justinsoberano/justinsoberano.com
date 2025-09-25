@@ -1,38 +1,132 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+  background-color: var(--primary-bg);
+  color: var(--primary-text);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding: 0;
 }
 
-.App-link {
-  color: #61dafb;
+.content-wrapper {
+  width: 768px;
+  padding: 96px;
+  box-sizing: border-box;
+  /* border-left: 1px solid rgba(255, 255, 255, 0.1);
+  border-right: 1px solid rgba(255, 255, 255, 0.1); */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.name-heading {
+  font-family: 'editorial-old', serif;
+  font-weight: 400;
+  font-size: 2.5rem;
+  line-height: 1.2;
+  letter-spacing: 0;
+  margin: 0;
+  opacity: 0.9;
+  text-align: left;
+  font-feature-settings: 
+    "liga" 1,
+    "dlig" 1,
+    "ss01" 0;
+}
+
+.job-title {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  margin: 0;
+  opacity: 0.8;
+  text-align: left;
+}
+
+.experience-section {
+  width: calc(100% + 24px);
+  margin-left: -12px;
+  margin-right: -12px;
+  padding: 12px;
+  background-color: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.section-title {
+  font-family: 'editorial-old', serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin: 3rem 0rem 1rem 0rem;
+  opacity: 0.9;
+  text-align: left;
+}
+
+.experience-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.experience-divider {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  position: relative;
+}
+
+.experience-divider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.experience-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.company-logo {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+.role-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  opacity: 0.8;
+}
+
+.experience-date {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 400;
+  opacity: 0.6;
+}
+
+@media (max-width: 800px) {
+  .content-wrapper {
+    width: calc(100vw - 2rem);
+    border-left: none;
+    border-right: none;
+    padding: 12px;
   }
-  to {
-    transform: rotate(360deg);
+  
+  .experience-section {
+    margin: 12px;
+  }
+  
+  .experience-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .experience-content {
+    gap: 0.8rem;
   }
 }
