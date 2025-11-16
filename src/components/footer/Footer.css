@@ -1,0 +1,28 @@
+.footer {
+  padding: 24px 0;
+  text-align: center;
+}
+
+.footer-link {
+  font-family: 'Inter', Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: #888;
+  text-decoration: none;
+}
+
+.footer-link:hover {
+  color: var(--primary-text);
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 16px 0;
+  }
+
+  .footer-link {
+    font-size: 11px;
+  }
+}
+
