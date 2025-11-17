@@ -12,6 +12,16 @@
   --font-family-code: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
+::selection {
+  background-color: #800000;
+  color: white;
+}
+
+::-moz-selection {
+  background-color: #8B0000;
+  color: white;
+}
+
 body {
   font-family: var(--font-family-main);
   font-weight: 300;
