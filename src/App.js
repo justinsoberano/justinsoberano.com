@@ -1,10 +1,18 @@
-import Background from "./components/canvas/Canvas";
-import { ColorProvider } from "./context/ColorContext";
+import './App.css';
+import Header from './components/header/Header';
+import Introduction from './components/introduction/Introduction';
+import Experience from './components/experience/Experience';
+import Footer from './components/footer/Footer';
 
-export default function App() {
+function App() {
   return (
-    <ColorProvider>
-      <Background />
-    </ColorProvider>
+    <div className="container">
+      <Header />
+      <Introduction />
+      <Experience />
+      <Footer />
+    </div>
   );
 }
+
+export default App;

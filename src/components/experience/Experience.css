@@ -1,0 +1,79 @@
+.section-title {
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'Inter', Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 16px;
+  color: #888;
+}
+
+.experience-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.experience-item {
+  display: flex;
+  gap: 24px;
+  font-family: 'Inter', Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  align-items: center;
+}
+
+.experience-date {
+  font-weight: 400;
+  color: #888;
+  width: 120px;
+  flex-shrink: 0;
+}
+
+.experience-details {
+  font-weight: 300;
+  color: var(--primary-text);
+  flex: 1;
+}
+
+.experience-location {
+  font-weight: 300;
+  color: #888;
+  text-align: right;
+}
+
+.company-name {
+  font-weight: 600;
+  display: inline-block;
+  width: 100px;
+}
+
+@media (max-width: 768px) {
+  .experience-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    margin-bottom: 16px;
+  }
+
+  .experience-date {
+    width: auto;
+    font-size: 14px;
+  }
+
+  .experience-details {
+    font-size: 14px;
+  }
+
+  .experience-location {
+    font-size: 14px;
+    text-align: left;
+  }
+
+  .company-name {
+    width: auto;
+    display: block;
+    margin-bottom: 4px;
+  }
+}
+
