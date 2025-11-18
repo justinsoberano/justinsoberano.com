@@ -8,6 +8,14 @@
   color: #888;
 }
 
+.experience-intro {
+  font-size: 16px;
+  font-weight: 300;
+  font-family: 'Inter', Arial, sans-serif;
+  line-height: 24px;
+  margin-bottom: 16px;
+}
+
 .experience-list {
   display: flex;
   flex-direction: column;
@@ -16,6 +24,7 @@
 
 .experience-item {
   display: flex;
+  flex-direction: row;
   gap: 24px;
   font-family: 'Inter', Arial, sans-serif;
   font-size: 16px;
@@ -23,57 +32,88 @@
   align-items: center;
 }
 
+.experience-row-1,
+.experience-row-2 {
+  display: contents;
+}
+
 .experience-date {
   font-weight: 400;
   color: #888;
   width: 120px;
   flex-shrink: 0;
-}
-
-.experience-details {
-  font-weight: 300;
-  color: var(--primary-text);
-  flex: 1;
-}
-
-.experience-location {
-  font-weight: 300;
-  color: #888;
-  text-align: right;
+  order: 1;
 }
 
 .company-name {
   font-weight: 600;
   display: inline-block;
   width: 100px;
+  order: 2;
+}
+
+.experience-role {
+  font-weight: 300;
+  color: var(--primary-text);
+  flex: 1;
+  order: 3;
+}
+
+.experience-location {
+  font-weight: 300;
+  color: #888;
+  text-align: right;
+  order: 4;
 }
 
 @media (max-width: 768px) {
+  .experience-intro {
+    font-size: 14px;
+  }
+
+  .experience-list {
+    gap: 20px;
+  }
+
   .experience-item {
     flex-direction: column;
-    align-items: flex-start;
     gap: 4px;
-    margin-bottom: 16px;
+    font-size: 14px;
+    align-items: stretch;
   }
 
-  .experience-date {
+  .experience-row-1,
+  .experience-row-2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .company-name {
+    font-weight: 600;
+    font-size: 14px;
     width: auto;
-    font-size: 14px;
-  }
-
-  .experience-details {
-    font-size: 14px;
+    order: 0;
   }
 
   .experience-location {
     font-size: 14px;
-    text-align: left;
+    text-align: right;
+    order: 0;
   }
 
-  .company-name {
+  .experience-role {
+    font-weight: 300;
+    font-size: 14px;
+    order: 0;
+  }
+
+  .experience-date {
+    font-weight: 400;
+    font-size: 14px;
     width: auto;
-    display: block;
-    margin-bottom: 4px;
+    text-align: right;
+    order: 0;
   }
 }
 

@@ -1,27 +1,28 @@
 .footer {
-  padding: 24px 0;
   text-align: center;
 }
 
-.footer-link {
-  font-family: 'Inter', Arial, sans-serif;
-  font-size: 12px;
-  font-weight: 400;
-  color: #888;
-  text-decoration: none;
+.footer-signature {
+  max-width: 200px;
+  height: auto;
+  opacity: 0.8;
+  margin-bottom: 8px;
 }
 
-.footer-link:hover {
-  color: var(--primary-text);
-  text-decoration: underline;
+.footer-name {
+  font-family: 'Inter', Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  color: #888;
+  margin: 0;
 }
 
 @media (max-width: 768px) {
-  .footer {
-    padding: 16px 0;
+  .footer-signature {
+    max-width: 150px;
   }
 
-  .footer-link {
+  .footer-name {
     font-size: 11px;
   }
 }

@@ -8,7 +8,7 @@
 
 :root {
   --primary-bg: rgb(18, 18, 18);
-  --primary-text: white;
+  --primary-text: rgb(225, 225, 225);
   --font-family-code: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 

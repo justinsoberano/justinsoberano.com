@@ -3,14 +3,8 @@ import './Footer.css';
 function Footer() {
   return (
     <footer className="footer">
-      <a 
-        href="https://old.justinsoberano.com" 
-        target="_blank" 
-        rel="noopener noreferrer" 
-        className="footer-link"
-      >
-        View old portfolio
-      </a>
+      <img src="/signature.png" alt="Signature" className="footer-signature" />
+      <p className="footer-name">Justin Soberano Borbonio</p>
     </footer>
   );
 }
