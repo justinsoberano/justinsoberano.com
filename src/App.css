@@ -16,11 +16,12 @@
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   z-index: 1;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 1), 0 0 100px rgba(0, 0, 0, 0.8);
 }
 
 section {
   padding: 24px 0;
-  border-bottom: 1px solid #282828;
+  border-bottom: 1px solid #88888850;
 }
 
 @media (max-width: 768px) {
@@ -28,6 +29,7 @@ section {
     padding: 32px 20px;
     border-left: none;
     border-right: none;
+    box-shadow: none;
   }
 
   section {

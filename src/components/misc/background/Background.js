@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { Renderer, Triangle, Program, Mesh } from 'ogl';
-import './Prism.css';
+import './Background.css';
 
-const Prism = ({
+const Background = ({
   height = 3.5,
   baseWidth = 5.5,
   animationType = 'rotate',
@@ -430,7 +430,7 @@ const Prism = ({
     suspendWhenOffscreen
   ]);
 
-  return <div className="prism-container" ref={containerRef} />;
+  return <div className="background-container" ref={containerRef} />;
 };
 
-export default Prism;
+export default Background;

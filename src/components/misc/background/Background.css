@@ -1,4 +1,4 @@
-.prism-container {
+.background-container {
     position: absolute;
     top: 0;
     left: 0;
@@ -7,7 +7,7 @@
     z-index: 0;
     pointer-events: none;
     opacity: 0;
-    animation: fadeIn 5s ease-out forwards;
+    animation: fadeIn 10s ease-out forwards;
 }
 
 @keyframes fadeIn {

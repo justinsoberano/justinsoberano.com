@@ -5,12 +5,12 @@ import Experience from './components/core/experience/Experience';
 import Footer from './components/core/footer/Footer';
 import Involvement from './components/core/involvement/Involvement';
 import Projects from './components/core/projects/Projects';
-import Prism from './components/misc/background/Prism';
+import Background from './components/misc/background/Background';
 
 function App() {
   return (
     <div className="layout-wrapper">
-      <Prism
+      <Background
         animationType="3drotate"
         timeScale={0.2}
         height={7.3}
