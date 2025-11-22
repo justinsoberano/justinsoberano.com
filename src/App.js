@@ -9,7 +9,7 @@ import Prism from './components/misc/background/Prism';
 
 function App() {
   return (
-    <>
+    <div className="layout-wrapper">
       <Prism
         animationType="3drotate"
         timeScale={0.2}
@@ -29,7 +29,7 @@ function App() {
         <Projects />
         <Footer />
       </div>
-    </>
+    </div>
   );
 }
 

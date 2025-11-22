@@ -1,5 +1,12 @@
-.container {
+.layout-wrapper {
+  position: relative;
   max-width: 768px;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.container {
+  position: relative;
   width: 100%;
   min-height: 100vh;
   padding: 64px 32px;
@@ -8,6 +15,7 @@
   background-color: rgba(18, 18, 18, 0.6);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
+  z-index: 1;
 }
 
 section {
