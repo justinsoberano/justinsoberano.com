@@ -44,7 +44,7 @@ const Background = ({
     const HOVSTR = Math.max(0, hoverStrength || 1);
     const INERT = Math.max(0, Math.min(1, inertia || 0.12));
 
-    const dpr = Math.min(2, window.devicePixelRatio || 1);
+    const dpr = 0.25;
     const renderer = new Renderer({
       dpr,
       alpha: transparent,
