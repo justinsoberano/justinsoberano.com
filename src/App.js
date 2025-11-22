@@ -18,8 +18,8 @@ function App() {
         scale={3}
         hueShift={0}
         colorFrequency={1}
-        noise={0.2}
-        glow={1}
+        noise={0}
+        glow={1.75}
       />
       <div className="container">
         <Header />
