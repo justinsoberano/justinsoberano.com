@@ -1,10 +1,10 @@
 import './App.css';
-import Header from './components/header/Header';
-import Introduction from './components/introduction/Introduction';
-import Experience from './components/experience/Experience';
-import Footer from './components/footer/Footer';
-import Involvement from './components/involvement/Involvement';
-import Projects from './components/projects/Projects';
+import Header from './components/core/header/Header';
+import Introduction from './components/core/introduction/Introduction';
+import Experience from './components/core/experience/Experience';
+import Footer from './components/core/footer/Footer';
+import Involvement from './components/core/involvement/Involvement';
+import Projects from './components/core/projects/Projects';
 
 function App() {
   return (

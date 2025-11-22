@@ -5,6 +5,9 @@
   padding: 64px 32px;
   border-left: 1px solid #282828;
   border-right: 1px solid #282828;
+  background-color: rgba(18, 18, 18, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 section {
