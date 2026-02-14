@@ -10,6 +10,44 @@
   font-weight: 600;
   font-family: 'Inter', Arial, sans-serif;
   margin: 0;
+  display: flex;
+  align-items: baseline;
+  line-height: 1.1;
+}
+
+.name-easter-egg {
+  display: inline-grid;
+  align-items: baseline;
+  white-space: nowrap;
+  width: 2.2ch;
+  overflow: hidden;
+  margin-left: 0.2ch;
+  transition: width 280ms cubic-bezier(0.2, 0.8, 0.25, 1), margin-left 260ms cubic-bezier(0.2, 0.8, 0.25, 1);
+}
+
+.name-short {
+  grid-area: 1 / 1;
+  opacity: 1;
+  transition: opacity 180ms ease;
+}
+
+.name-long {
+  grid-area: 1 / 1;
+  opacity: 0;
+  transition: opacity 220ms ease;
+}
+
+.name-easter-egg:hover .name-short {
+  opacity: 0;
+}
+
+.name-easter-egg:hover {
+  width: 9ch;
+  margin-left: 0;
+}
+
+.name-easter-egg:hover .name-long {
+  opacity: 1;
 }
 
 .header-links {
@@ -37,6 +75,17 @@
     gap: 16px;
   }
 
+  .name-heading {
+    flex-direction: column;
+    align-items: flex-start;
+    line-height: 1.05;
+    gap: 12px;
+  }
+
+  .name-easter-egg {
+    margin-left: 0;
+  }
+
   .header-links {
     flex-direction: column;
     align-items: flex-end;
@@ -47,4 +96,3 @@
     font-size: 16px;
   }
 }
-

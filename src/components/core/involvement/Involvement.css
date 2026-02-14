@@ -1,8 +1,4 @@
 .involvement-intro {
-  font-size: 16px;
-  font-weight: 300;
-  font-family: 'Inter', Arial, sans-serif;
-  line-height: 24px;
   margin-bottom: 16px;
 }
 
@@ -29,7 +25,7 @@
 
 .involvement-date {
   font-weight: 400;
-  color: #888;
+  color: var(--muted-text);
   width: 120px;
   flex-shrink: 0;
   order: 1;
@@ -52,14 +48,14 @@
 
 .involvement-location {
   font-weight: 300;
-  color: #888;
+  color: var(--muted-text);
   text-align: right;
   order: 4;
 }
 
 @media (max-width: 768px) {
-  .involvement-intro {
-    font-size: 14px;
+  .involvement-section .section-title {
+    font-size: 16px;
   }
 
   .involvement-list {
@@ -69,7 +65,7 @@
   .involvement-item {
     flex-direction: column;
     gap: 4px;
-    font-size: 14px;
+    font-size: 16px;
     align-items: stretch;
   }
 
@@ -82,26 +78,26 @@
 
   .organization-name {
     font-weight: 600;
-    font-size: 14px;
+    font-size: 16px;
     width: auto;
     order: 0;
   }
 
   .involvement-location {
-    font-size: 14px;
+    font-size: 16px;
     text-align: right;
     order: 0;
   }
 
   .involvement-role {
     font-weight: 300;
-    font-size: 14px;
+    font-size: 16px;
     order: 0;
   }
 
   .involvement-date {
     font-weight: 400;
-    font-size: 14px;
+    font-size: 16px;
     width: auto;
     text-align: right;
     order: 0;

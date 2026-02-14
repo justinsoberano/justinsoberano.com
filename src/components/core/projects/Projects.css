@@ -2,13 +2,6 @@
   margin-bottom: 40px;
 }
 
-.projects-intro {
-  font-size: 16px;
-  font-weight: 300;
-  font-family: 'Inter', Arial, sans-serif;
-  line-height: 24px;
-}
-
 .portfolio-link {
   color: var(--primary-text);
   text-decoration: underline;
@@ -18,11 +11,5 @@
 
 .portfolio-link:hover {
   opacity: 0.7;
-}
-
-@media (max-width: 768px) {
-  .projects-intro {
-    font-size: 14px;
-  }
 }
 

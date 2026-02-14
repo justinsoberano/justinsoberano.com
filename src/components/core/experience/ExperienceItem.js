@@ -14,4 +14,3 @@ function ExperienceItem({ date, company, role, location }) {
 }
 
 export default ExperienceItem;
-

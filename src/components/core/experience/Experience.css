@@ -1,19 +1,32 @@
-.section-title {
-  font-size: 14px;
+.experience-intro {
+  margin-bottom: 16px;
+}
+
+.experience-groups {
+  margin-left: 0;
+}
+
+.experience-subsection {
+  margin-bottom: 22px;
+}
+
+.experience-subsection:last-child {
+  margin-bottom: 0;
+}
+
+.experience-subsection-content {
+  padding-left: 14px;
+  border-left: 1px solid var(--section-border);
+}
+
+.experience-subsection-title {
+  font-size: 13px;
   font-weight: 600;
   font-family: 'Inter', Arial, sans-serif;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  margin-bottom: 16px;
-  color: #888;
-}
-
-.experience-intro {
-  font-size: 16px;
-  font-weight: 300;
-  font-family: 'Inter', Arial, sans-serif;
-  line-height: 24px;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
+  color: var(--muted-text);
 }
 
 .experience-list {
@@ -39,7 +52,7 @@
 
 .experience-date {
   font-weight: 400;
-  color: #888;
+  color: var(--muted-text);
   width: 120px;
   flex-shrink: 0;
   order: 1;
@@ -61,14 +74,31 @@
 
 .experience-location {
   font-weight: 300;
-  color: #888;
+  color: var(--muted-text);
   text-align: right;
   order: 4;
 }
 
 @media (max-width: 768px) {
-  .experience-intro {
+  .experience-section .section-title {
+    font-size: 16px;
+  }
+
+  .experience-groups {
+    margin-left: 0;
+  }
+
+  .experience-subsection {
+    margin-bottom: 16px;
+  }
+
+  .experience-subsection-content {
+    padding-left: 12px;
+  }
+
+  .experience-subsection-title {
     font-size: 14px;
+    margin-bottom: 10px;
   }
 
   .experience-list {
@@ -78,7 +108,7 @@
   .experience-item {
     flex-direction: column;
     gap: 4px;
-    font-size: 14px;
+    font-size: 16px;
     align-items: stretch;
   }
 
@@ -91,29 +121,28 @@
 
   .company-name {
     font-weight: 600;
-    font-size: 14px;
+    font-size: 16px;
     width: auto;
     order: 0;
   }
 
   .experience-location {
-    font-size: 14px;
+    font-size: 16px;
     text-align: right;
     order: 0;
   }
 
   .experience-role {
     font-weight: 300;
-    font-size: 14px;
+    font-size: 16px;
     order: 0;
   }
 
   .experience-date {
     font-weight: 400;
-    font-size: 14px;
+    font-size: 16px;
     width: auto;
     text-align: right;
     order: 0;
   }
 }
-

@@ -1,19 +1,16 @@
 import './Introduction.css';
+import { INTRO_PARAGRAPHS } from '../../../data/profile';
 
 function Introduction() {
   return (
     <section>
-      <p className="introduction">
-        I'm a fourth year software engineering student at Iowa State University graduating 
-        in December 2025.
-      </p>
-      <br />
-      <p className="introduction">
-        I am starting as a Software Engineer at Meta Reality Labs in 2026.
-      </p>
+      {INTRO_PARAGRAPHS.map((paragraph, index) => (
+        <p key={index} className="section-copy introduction">
+          {paragraph}
+        </p>
+      ))}
     </section>
   );
 }
 
 export default Introduction;
-

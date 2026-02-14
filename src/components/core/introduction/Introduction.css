@@ -1,13 +1,7 @@
 .introduction {
-  font-size: 16px;
-  font-weight: 300;
-  font-family: 'Inter', Arial, sans-serif;
-  line-height: 24px;
+  margin-bottom: 16px;
 }
 
-@media (max-width: 768px) {
-  .introduction {
-    font-size: 14px;
-  }
+.introduction:last-child {
+  margin-bottom: 0;
 }
-

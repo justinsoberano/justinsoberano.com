@@ -6,6 +6,7 @@
   max-width: 200px;
   height: auto;
   opacity: 0.8;
+  filter: var(--signature-filter);
   margin-bottom: 8px;
 }
 
@@ -13,7 +14,7 @@
   font-family: 'Inter', Arial, sans-serif;
   font-size: 12px;
   font-weight: 300;
-  color: #888;
+  color: var(--muted-text);
   margin: 0;
 }
 
@@ -26,4 +27,3 @@
     font-size: 11px;
   }
 }
-
