@@ -221,6 +221,9 @@ const Background = ({
       }
     });
     const mesh = new Mesh(gl, { geometry, program });
+    const drawFrame = () => {
+      renderer.render({ scene: mesh });
+    };
 
     const resize = () => {
       const w = container.clientWidth || 1;
@@ -231,6 +234,8 @@ const Background = ({
       offsetPxBuf[0] = offX * dpr;
       offsetPxBuf[1] = offY * dpr;
       program.uniforms.uPxScale.value = 1 / ((gl.drawingBufferHeight || 1) * 0.1 * SCALE);
+      // Prevent a transient blank frame after resize-triggered buffer clears.
+      drawFrame();
     };
     const ro = new ResizeObserver(resize);
     ro.observe(container);
@@ -375,7 +380,7 @@ const Background = ({
         if (TS < 1e-6) continueRAF = false;
       }
 
-      renderer.render({ scene: mesh });
+      drawFrame();
       if (continueRAF) {
         raf = requestAnimationFrame(render);
       } else {

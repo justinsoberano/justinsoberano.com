@@ -15,6 +15,10 @@
   line-height: 1.1;
 }
 
+.name-line + .name-line {
+  margin-left: 0.24ch;
+}
+
 .name-easter-egg {
   display: inline-grid;
   align-items: baseline;
@@ -80,6 +84,10 @@
     align-items: flex-start;
     line-height: 1.05;
     gap: 12px;
+  }
+
+  .name-line + .name-line {
+    margin-left: 0;
   }
 
   .name-easter-egg {

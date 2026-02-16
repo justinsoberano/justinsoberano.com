@@ -4,7 +4,7 @@ function Header() {
   return (
     <header className="header">
       <p className="name-heading">
-        <span className="name-line">justin </span>
+        <span className="name-line">justin</span>
         <span className="name-line">soberano</span>
         <span className="name-easter-egg" aria-hidden="true">
           <span className="name-short"> b.</span>
