@@ -2,12 +2,14 @@ import { useEffect, useRef } from 'react';
 import { Renderer, Triangle, Program, Mesh } from 'ogl';
 import './Background.css';
 
+const DEFAULT_OFFSET = { x: 0, y: 0 };
+
 const Background = ({
   height = 3.5,
   baseWidth = 5.5,
   animationType = 'rotate',
   glow = 1,
-  offset = { x: 0, y: 0 },
+  offset = DEFAULT_OFFSET,
   noise = 0.5,
   transparent = true,
   scale = 3.6,
@@ -388,18 +390,16 @@ const Background = ({
       }
     };
 
+    let io;
     if (suspendWhenOffscreen) {
-      const io = new IntersectionObserver(entries => {
+      io = new IntersectionObserver(entries => {
         const vis = entries.some(e => e.isIntersecting);
         if (vis) startRAF();
         else stopRAF();
       });
       io.observe(container);
-      startRAF();
-      container.__prismIO = io;
-    } else {
-      startRAF();
     }
+    startRAF();
 
     return () => {
       stopRAF();
@@ -409,11 +409,7 @@ const Background = ({
         window.removeEventListener('mouseleave', onLeave);
         window.removeEventListener('blur', onBlur);
       }
-      if (suspendWhenOffscreen) {
-        const io = container.__prismIO;
-        if (io) io.disconnect();
-        delete container.__prismIO;
-      }
+      if (io) io.disconnect();
       if (gl.canvas.parentElement === container) container.removeChild(gl.canvas);
     };
   }, [

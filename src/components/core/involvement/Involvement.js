@@ -1,5 +1,5 @@
 import './Involvement.css';
-import InvolvementItem from './InvolvementItem';
+import TimelineItem from '../shared/TimelineItem';
 import { INVOLVEMENT } from '../../../data/profile';
 
 function Involvement() {
@@ -9,12 +9,12 @@ function Involvement() {
       <p className="section-copy involvement-intro">
         {INVOLVEMENT.summary}
       </p>
-      <div className="involvement-list">
+      <div className="timeline-list">
         {INVOLVEMENT.items.map((inv, index) => (
-          <InvolvementItem
+          <TimelineItem
             key={index}
             date={inv.date}
-            organization={inv.organization}
+            name={inv.name}
             role={inv.role}
             location={inv.location}
           />

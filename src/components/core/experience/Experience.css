@@ -37,25 +37,23 @@
   border-left: 1px solid var(--section-border);
 }
 
-.experience-subsection-title {
+.experience-subsection-title,
+.experience-toggle-button {
   font-size: 13px;
   font-weight: 600;
-  font-family: 'Inter', Arial, sans-serif;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  margin-bottom: 12px;
   color: var(--muted-text);
 }
 
+.experience-subsection-title {
+  margin-bottom: 12px;
+}
+
 .experience-toggle-button {
+  font-family: inherit;
   border: 0;
   background: transparent;
-  font-size: 13px;
-  font-weight: 600;
-  font-family: 'Inter', Arial, sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--muted-text);
   cursor: pointer;
   padding: 0;
   white-space: nowrap;
@@ -71,56 +69,6 @@
   outline: 2px solid var(--link-color);
   outline-offset: 2px;
   border-radius: 2px;
-}
-
-.experience-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.experience-item {
-  display: flex;
-  flex-direction: row;
-  gap: 24px;
-  font-family: 'Inter', Arial, sans-serif;
-  font-size: 16px;
-  line-height: 1.5;
-  align-items: center;
-}
-
-.experience-row-1,
-.experience-row-2 {
-  display: contents;
-}
-
-.experience-date {
-  font-weight: 400;
-  color: var(--muted-text);
-  width: 120px;
-  flex-shrink: 0;
-  order: 1;
-}
-
-.company-name {
-  font-weight: 600;
-  display: inline-block;
-  width: 100px;
-  order: 2;
-}
-
-.experience-role {
-  font-weight: 300;
-  color: var(--primary-text);
-  flex: 1;
-  order: 3;
-}
-
-.experience-location {
-  font-weight: 300;
-  color: var(--muted-text);
-  text-align: right;
-  order: 4;
 }
 
 @keyframes internshipsReveal {
@@ -172,58 +120,13 @@
     padding-left: 12px;
   }
 
-  .experience-subsection-title {
-    font-size: 14px;
-    margin-bottom: 10px;
-  }
-
+  .experience-subsection-title,
   .experience-toggle-button {
     font-size: 14px;
   }
 
-  .experience-list {
-    gap: 20px;
-  }
-
-  .experience-item {
-    flex-direction: column;
-    gap: 4px;
-    font-size: 16px;
-    align-items: stretch;
-  }
-
-  .experience-row-1,
-  .experience-row-2 {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-  }
-
-  .company-name {
-    font-weight: 600;
-    font-size: 16px;
-    width: auto;
-    order: 0;
-  }
-
-  .experience-location {
-    font-size: 16px;
-    text-align: right;
-    order: 0;
-  }
-
-  .experience-role {
-    font-weight: 300;
-    font-size: 16px;
-    order: 0;
-  }
-
-  .experience-date {
-    font-weight: 400;
-    font-size: 16px;
-    width: auto;
-    text-align: right;
-    order: 0;
+  .experience-subsection-title {
+    margin-bottom: 10px;
   }
 }
 

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './Experience.css';
-import ExperienceItem from './ExperienceItem';
+import TimelineItem from '../shared/TimelineItem';
 import { EXPERIENCE } from '../../../data/profile';
 
 function Experience() {
@@ -15,12 +15,12 @@ function Experience() {
         <div className="experience-subsection">
           <h3 className="experience-subsection-title">Full-Time</h3>
           <div className="experience-subsection-content">
-            <div className="experience-list">
+            <div className="timeline-list">
               {EXPERIENCE.fullTime.map((exp, index) => (
-                <ExperienceItem
+                <TimelineItem
                   key={`full-time-${index}`}
                   date={exp.date}
-                  company={exp.company}
+                  name={exp.name}
                   role={exp.role}
                   location={exp.location}
                 />
@@ -47,12 +47,12 @@ function Experience() {
               <p className="section-copy experience-intro">
                 {EXPERIENCE.internshipsSummary}
               </p>
-              <div className="experience-list">
+              <div className="timeline-list">
                 {EXPERIENCE.internships.map((exp, index) => (
-                  <ExperienceItem
+                  <TimelineItem
                     key={`internship-${index}`}
                     date={exp.date}
-                    company={exp.company}
+                    name={exp.name}
                     role={exp.role}
                     location={exp.location}
                   />

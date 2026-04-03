@@ -7,7 +7,7 @@ export const EXPERIENCE = {
   fullTime: [
     {
       date: 'Present',
-      company: 'Meta',
+      name: 'Meta',
       role: 'Software Engineer, Core Infra',
       location: 'New York, NY'
     }
@@ -15,25 +15,25 @@ export const EXPERIENCE = {
   internships: [
     {
       date: '2025',
-      company: 'Meta',
+      name: 'Meta',
       role: 'Software Engineer Intern',
       location: 'New York, NY'
     },
     {
       date: '2024',
-      company: 'Instagram',
+      name: 'Instagram',
       role: 'Software Engineer Intern',
       location: 'San Francisco, CA'
     },
     {
       date: '2023',
-      company: 'NASA',
+      name: 'NASA',
       role: 'Software Engineer Intern',
       location: 'Houston, TX'
     },
     {
       date: '2022',
-      company: 'NASA',
+      name: 'NASA',
       role: 'Software Engineer Intern',
       location: 'Houston, TX'
     }
@@ -48,25 +48,25 @@ export const INVOLVEMENT = {
   items: [
     {
       date: '2023 - 2025',
-      organization: 'Iowa State',
+      name: 'Iowa State',
       role: 'Peer Mentor for SWE Freshman',
       location: 'Ames, IA'
     },
     {
       date: '2023',
-      organization: 'Iowa State',
+      name: 'Iowa State',
       role: 'Undergraduate Teaching Assistant',
       location: 'Ames, IA'
     },
     {
       date: '2022 - 2023',
-      organization: 'Hack Club',
+      name: 'Hack Club',
       role: 'Founder',
       location: 'Ames, IA'
     },
     {
       date: '2022',
-      organization: 'DevsDoGood',
+      name: 'DevsDoGood',
       role: 'Front End Developer',
       location: 'West Des Moines, IA'
     }

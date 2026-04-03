@@ -8,12 +8,12 @@ import Involvement from './components/core/involvement/Involvement';
 import Projects from './components/core/projects/Projects';
 import Background from './components/misc/background/Background';
 
-function App() {
-  const getPreferredTheme = () => {
-    if (typeof window === 'undefined' || !window.matchMedia) return 'dark';
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-  };
+const getPreferredTheme = () => {
+  if (typeof window === 'undefined' || !window.matchMedia) return 'dark';
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+};
 
+function App() {
   const [theme, setTheme] = useState(getPreferredTheme);
 
   useEffect(() => {
@@ -21,20 +21,8 @@ function App() {
     const handleThemeChange = event => {
       setTheme(event.matches ? 'dark' : 'light');
     };
-
-    if (typeof mediaQuery.addEventListener === 'function') {
-      mediaQuery.addEventListener('change', handleThemeChange);
-    } else if (typeof mediaQuery.addListener === 'function') {
-      mediaQuery.addListener(handleThemeChange);
-    }
-
-    return () => {
-      if (typeof mediaQuery.removeEventListener === 'function') {
-        mediaQuery.removeEventListener('change', handleThemeChange);
-      } else if (typeof mediaQuery.removeListener === 'function') {
-        mediaQuery.removeListener(handleThemeChange);
-      }
-    };
+    mediaQuery.addEventListener('change', handleThemeChange);
+    return () => mediaQuery.removeEventListener('change', handleThemeChange);
   }, []);
 
   useEffect(() => {
