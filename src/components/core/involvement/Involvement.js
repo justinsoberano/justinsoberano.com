@@ -1,15 +1,27 @@
-import './Involvement.css';
-import TimelineItem from '../shared/TimelineItem';
+import * as stylex from '@stylexjs/stylex';
+import TimelineItem, { TimelineList } from '../shared/TimelineItem';
+import { shared } from '../../../styles.stylex';
 import { INVOLVEMENT } from '../../../data/profile';
+
+const styles = stylex.create({
+  intro: {
+    marginBottom: '16px',
+  },
+  sectionTitle: {
+    '@media (max-width: 768px)': {
+      fontSize: '16px',
+    },
+  },
+});
 
 function Involvement() {
   return (
-    <section className="involvement-section">
-      <h2 className="section-title">Involvement</h2>
-      <p className="section-copy involvement-intro">
+    <section {...stylex.props(shared.section)}>
+      <h2 {...stylex.props(shared.sectionTitle, styles.sectionTitle)}>Involvement</h2>
+      <p {...stylex.props(shared.sectionCopy, styles.intro)}>
         {INVOLVEMENT.summary}
       </p>
-      <div className="timeline-list">
+      <TimelineList>
         {INVOLVEMENT.items.map((inv, index) => (
           <TimelineItem
             key={index}
@@ -19,10 +31,9 @@ function Involvement() {
             location={inv.location}
           />
         ))}
-      </div>
+      </TimelineList>
     </section>
   );
 }
 
 export default Involvement;
-

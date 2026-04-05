@@ -1,6 +1,28 @@
+import * as stylex from '@stylexjs/stylex';
 import { useEffect, useRef } from 'react';
 import { Renderer, Triangle, Program, Mesh } from 'ogl';
-import './Background.css';
+
+const fadeIn = stylex.keyframes({
+  from: { opacity: 0 },
+  to: { opacity: 1 },
+});
+
+const styles = stylex.create({
+  container: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    zIndex: 0,
+    pointerEvents: 'none',
+    opacity: 0,
+    animationName: fadeIn,
+    animationDuration: '5s',
+    animationTimingFunction: 'ease-out',
+    animationFillMode: 'forwards',
+  },
+});
 
 const DEFAULT_OFFSET = { x: 0, y: 0 };
 
@@ -431,7 +453,7 @@ const Background = ({
     suspendWhenOffscreen
   ]);
 
-  return <div className="background-container" ref={containerRef} />;
+  return <div {...stylex.props(styles.container)} ref={containerRef} />;
 };
 
 export default Background;

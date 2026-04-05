@@ -3,6 +3,9 @@
   "version": "3.0.0",
   "private": true,
   "dependencies": {
+    "@craco/craco": "^7.1.0",
+    "@stylexjs/babel-plugin": "^0.18.2",
+    "@stylexjs/stylex": "^0.18.2",
     "ogl": "^1.0.11",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
@@ -11,8 +14,8 @@
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "start": "react-scripts start",
-    "build": "GENERATE_SOURCEMAP=false react-scripts build"
+    "start": "craco start",
+    "build": "GENERATE_SOURCEMAP=false craco build"
   },
   "eslintConfig": {
     "extends": [
