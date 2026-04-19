@@ -1,5 +1,5 @@
 import './Introduction.css';
-import { INTRO_PARAGRAPHS } from '../../../data/profile';
+import { INTRO_PARAGRAPHS } from '../data/profile';
 
 function Introduction() {
   return (

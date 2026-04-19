@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './Experience.css';
-import TimelineItem from '../shared/TimelineItem';
-import { EXPERIENCE } from '../../../data/profile';
+import TimelineItem from '../components/TimelineItem';
+import { EXPERIENCE } from '../data/profile';
 
 function Experience() {
   const [showInternships, setShowInternships] = useState(false);
