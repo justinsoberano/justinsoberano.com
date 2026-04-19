@@ -1,38 +1,15 @@
-import { useEffect, useState } from 'react';
-import './App.css';
-import Header from './components/core/header/Header';
-import Introduction from './components/core/introduction/Introduction';
-import Experience from './components/core/experience/Experience';
-import Footer from './components/core/footer/Footer';
-import Involvement from './components/core/involvement/Involvement';
-import Projects from './components/core/projects/Projects';
-import Background from './components/misc/background/Background';
-
-const getPreferredTheme = () => {
-  if (typeof window === 'undefined' || !window.matchMedia) return 'dark';
-  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-};
+import './styles/layout.css';
+import Header from './sections/Header';
+import Introduction from './sections/Introduction';
+import Experience from './sections/Experience';
+import Involvement from './sections/Involvement';
+import Projects from './sections/Projects';
+import Footer from './sections/Footer';
+import Background from './background/Background';
+import { useTheme } from './hooks/useTheme';
 
 function App() {
-  const [theme, setTheme] = useState(getPreferredTheme);
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    const handleThemeChange = event => {
-      setTheme(event.matches ? 'dark' : 'light');
-    };
-    mediaQuery.addEventListener('change', handleThemeChange);
-    return () => mediaQuery.removeEventListener('change', handleThemeChange);
-  }, []);
-
-  useEffect(() => {
-    document.documentElement.dataset.theme = theme;
-
-    const metaThemeColor = document.querySelector('meta[name="theme-color"]');
-    if (metaThemeColor) {
-      metaThemeColor.setAttribute('content', theme === 'dark' ? '#121212' : '#f5f7fb');
-    }
-  }, [theme]);
+  const theme = useTheme();
 
   return (
     <div className="layout-wrapper">

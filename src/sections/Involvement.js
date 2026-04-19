@@ -1,6 +1,6 @@
 import './Involvement.css';
-import TimelineItem from '../shared/TimelineItem';
-import { INVOLVEMENT } from '../../../data/profile';
+import TimelineItem from '../components/TimelineItem';
+import { INVOLVEMENT } from '../data/profile';
 
 function Involvement() {
   return (
