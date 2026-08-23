@@ -19,7 +19,9 @@ const Background = ({
   inertia = 0.05,
   bloom = 1,
   suspendWhenOffscreen = false,
-  timeScale = 0.5
+  timeScale = 0.5,
+  pixelSize = 1,
+  saturation
 }) => {
   const containerRef = useRef(null);
 
@@ -34,7 +36,7 @@ const Background = ({
     const NOISE = Math.max(0.0, noise);
     const offX = offset?.x ?? 0;
     const offY = offset?.y ?? 0;
-    const SAT = transparent ? 1.5 : 1;
+    const SAT = saturation != null ? Math.max(0, saturation) : transparent ? 1.9 : 1.4;
     const SCALE = Math.max(0.001, scale);
     const HUE = hueShift || 0;
     const CFREQ = Math.max(0.0, colorFrequency || 1);
@@ -45,6 +47,7 @@ const Background = ({
     const TS = Math.max(0, timeScale || 1);
     const HOVSTR = Math.max(0, hoverStrength || 1);
     const INERT = Math.max(0, Math.min(1, inertia || 0.12));
+    const PIXEL_SIZE = Math.max(1, pixelSize || 1);
 
     const dpr = 0.75;
     const renderer = new Renderer({
@@ -62,7 +65,8 @@ const Background = ({
       inset: '0',
       width: '100%',
       height: '100%',
-      display: 'block'
+      display: 'block',
+      imageRendering: PIXEL_SIZE > 1 ? 'pixelated' : 'auto'
     });
     container.appendChild(gl.canvas);
 
@@ -97,6 +101,7 @@ const Background = ({
       uniform float uMinAxis;
       uniform float uPxScale;
       uniform float uTimeScale;
+      uniform float uPixelSize;
 
       vec4 tanh4(vec4 x){
         vec4 e2x = exp(2.0*x);
@@ -140,7 +145,11 @@ const Background = ({
       }
 
       void main(){
-        vec2 f = (gl_FragCoord.xy - 0.5 * iResolution.xy - uOffsetPx) * uPxScale;
+        vec2 fragCoord = gl_FragCoord.xy;
+        if (uPixelSize > 1.0) {
+          fragCoord = floor(fragCoord / uPixelSize) * uPixelSize + uPixelSize * 0.5;
+        }
+        vec2 f = (fragCoord - 0.5 * iResolution.xy - uOffsetPx) * uPxScale;
 
         float z = 5.0;
         float d = 0.0;
@@ -175,12 +184,14 @@ const Background = ({
         o = tanh4(o * o * (uGlow * uBloom) / 1e5);
 
         vec3 col = o.rgb;
-        float n = rand(gl_FragCoord.xy + vec2(iTime));
+        float n = rand(fragCoord + vec2(iTime));
         col += (n - 0.5) * uNoise;
         col = clamp(col, 0.0, 1.0);
 
         float L = dot(col, vec3(0.2126, 0.7152, 0.0722));
         col = clamp(mix(vec3(L), col, uSaturation), 0.0, 1.0);
+        // Deepen colors: gamma curve for richer jewel tones (slightly lifted)
+        col = pow(col, vec3(1.15));
 
         if(abs(uHueShift) > 0.0001){
           col = clamp(hueRotation(uHueShift) * col, 0.0, 1.0);
@@ -219,7 +230,8 @@ const Background = ({
         uPxScale: {
           value: 1 / ((gl.drawingBufferHeight || 1) * 0.1 * SCALE)
         },
-        uTimeScale: { value: TS }
+        uTimeScale: { value: TS },
+        uPixelSize: { value: PIXEL_SIZE }
       }
     });
     const mesh = new Mesh(gl, { geometry, program });
@@ -428,7 +440,9 @@ const Background = ({
     hoverStrength,
     inertia,
     bloom,
-    suspendWhenOffscreen
+    suspendWhenOffscreen,
+    pixelSize,
+    saturation
   ]);
 
   return <div className="background-container" ref={containerRef} />;

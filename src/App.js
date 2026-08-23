@@ -43,9 +43,12 @@ function App() {
         baseWidth={9.7}
         scale={3}
         hueShift={theme === 'dark' ? 0 : 2.9}
-        colorFrequency={1}
+        colorFrequency={2.2}
         noise={theme === 'dark' ? 0 : 0.04}
-        glow={theme === 'dark' ? 1.75 : 1.2}
+        glow={theme === 'dark' ? 1.8 : 1.45}
+        bloom={1.0}
+        saturation={2.0}
+        pixelSize={20}
       />
       <div className="container">
         <Header />

@@ -1,6 +1,6 @@
 export const INTRO_PARAGRAPHS = [
-  'I am a software engineer at Meta within Core Infra, working on our internal configuration tools used for feature releases, A/B testing, and experimentation across Facebook, Instagram, WhatsApp, Messenger, Threads, and other services.',
-  'I recently graduated from Iowa State University this last year.'
+  'I am a Software Engineer at Meta in Agent Data and Optimization where I help accelerate the game development capabilities of our LLMs.',
+  'I graduated from Iowa State University in 2025.'
 ];
 
 export const EXPERIENCE = {
@@ -8,7 +8,7 @@ export const EXPERIENCE = {
     {
       date: 'Present',
       name: 'Meta',
-      role: 'Software Engineer, Core Infra',
+      role: 'SWE, Agent Data and Optimization',
       location: 'New York, NY'
     }
   ],
