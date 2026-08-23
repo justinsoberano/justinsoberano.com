@@ -8,7 +8,7 @@ export const EXPERIENCE = {
     {
       date: 'Present',
       name: 'Meta',
-      role: 'SWE, Agent Data and Optimization',
+      role: 'Software Engineer',
       location: 'New York, NY'
     }
   ],
