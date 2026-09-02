@@ -5,7 +5,7 @@ function Projects() {
     <section className="projects-section">
       <h2 className="section-title">Projects</h2>
       <p className="section-copy projects-intro">
-        My projects are kinda cringe but if you're interested in seeing them, 
+        My projects are kinda cringe but if you&apos;re interested in seeing them,
         you can check them out at <a href="https://old.justinsoberano.com" target="_blank" rel="noopener noreferrer" className="portfolio-link">my old portfolio</a>.
       </p>
     </section>
@@ -13,4 +13,3 @@ function Projects() {
 }
 
 export default Projects;
-

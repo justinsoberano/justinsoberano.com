@@ -1,62 +1,37 @@
-import { useEffect, useState } from 'react';
 import './App.css';
-import Header from './components/core/header/Header';
-import Introduction from './components/core/introduction/Introduction';
-import Experience from './components/core/experience/Experience';
-import Footer from './components/core/footer/Footer';
-import Involvement from './components/core/involvement/Involvement';
-import Projects from './components/core/projects/Projects';
-import Background from './components/misc/background/Background';
+import './styles/sections.css';
+import Header from './components/Header/Header';
+import Introduction from './components/Introduction/Introduction';
+import Experience from './components/Experience/Experience';
+import Footer from './components/Footer/Footer';
+import Involvement from './components/Involvement/Involvement';
+import Projects from './components/Projects/Projects';
+import Background from './components/Background/Background';
+import useTheme from './hooks/useTheme';
+import { DARK_BACKGROUND, LIGHT_BACKGROUND } from './config/background';
 
-const getPreferredTheme = () => {
-  if (typeof window === 'undefined' || !window.matchMedia) return 'dark';
-  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-};
+const SECTIONS = [
+  { key: 'header', delay: 870, render: () => <Header /> },
+  { key: 'introduction', delay: 955, render: () => <Introduction /> },
+  { key: 'experience', delay: 1050, render: () => <Experience /> },
+  { key: 'involvement', delay: 1165, render: () => <Involvement /> },
+  { key: 'projects', delay: 1295, render: () => <Projects /> },
+  { key: 'footer', delay: 1435, render: () => <Footer /> },
+];
 
 function App() {
-  const [theme, setTheme] = useState(getPreferredTheme);
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    const handleThemeChange = event => {
-      setTheme(event.matches ? 'dark' : 'light');
-    };
-    mediaQuery.addEventListener('change', handleThemeChange);
-    return () => mediaQuery.removeEventListener('change', handleThemeChange);
-  }, []);
-
-  useEffect(() => {
-    document.documentElement.dataset.theme = theme;
-
-    const metaThemeColor = document.querySelector('meta[name="theme-color"]');
-    if (metaThemeColor) {
-      metaThemeColor.setAttribute('content', theme === 'dark' ? '#121212' : '#f5f7fb');
-    }
-  }, [theme]);
+  const theme = useTheme();
+  const backgroundProps = theme === 'dark' ? DARK_BACKGROUND : LIGHT_BACKGROUND;
 
   return (
     <div className="layout-wrapper">
-      <Background
-        animationType="3drotate"
-        timeScale={0.2}
-        height={7.3}
-        baseWidth={9.7}
-        scale={3}
-        hueShift={theme === 'dark' ? 0 : 2.9}
-        colorFrequency={2.2}
-        noise={theme === 'dark' ? 0 : 0.04}
-        glow={theme === 'dark' ? 1.8 : 1.45}
-        bloom={1.0}
-        saturation={2.0}
-        pixelSize={20}
-      />
+      <Background {...backgroundProps} />
       <div className="container">
-        <Header />
-        <Introduction />
-        <Experience />
-        <Involvement />
-        <Projects />
-        <Footer />
+        {SECTIONS.map(({ key, delay, render }) => (
+          <div key={key} className="stagger-item" style={{ '--content-delay': `${delay}ms` }}>
+            {render()}
+          </div>
+        ))}
       </div>
     </div>
   );

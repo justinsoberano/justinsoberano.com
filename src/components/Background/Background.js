@@ -1,5 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { Renderer, Triangle, Program, Mesh } from 'ogl';
+import { VERTEX_SHADER, FRAGMENT_SHADER } from './shaders';
+import { setMat3FromEuler, setMat3Identity } from './rotation';
 import './Background.css';
 
 const DEFAULT_OFFSET = { x: 0, y: 0 };
@@ -21,7 +23,7 @@ const Background = ({
   suspendWhenOffscreen = false,
   timeScale = 0.5,
   pixelSize = 1,
-  saturation
+  saturation,
 }) => {
   const containerRef = useRef(null);
 
@@ -53,7 +55,7 @@ const Background = ({
     const renderer = new Renderer({
       dpr,
       alpha: transparent,
-      antialias: false
+      antialias: false,
     });
     const gl = renderer.gl;
     gl.disable(gl.DEPTH_TEST);
@@ -66,148 +68,17 @@ const Background = ({
       width: '100%',
       height: '100%',
       display: 'block',
-      imageRendering: PIXEL_SIZE > 1 ? 'pixelated' : 'auto'
+      imageRendering: PIXEL_SIZE > 1 ? 'pixelated' : 'auto',
     });
     container.appendChild(gl.canvas);
-
-    const vertex = /* glsl */ `
-      attribute vec2 position;
-      void main() {
-        gl_Position = vec4(position, 0.0, 1.0);
-      }
-    `;
-
-    const fragment = /* glsl */ `
-      precision highp float;
-
-      uniform vec2  iResolution;
-      uniform float iTime;
-
-      uniform float uHeight;
-      uniform float uBaseHalf;
-      uniform mat3  uRot;
-      uniform int   uUseBaseWobble;
-      uniform float uGlow;
-      uniform vec2  uOffsetPx;
-      uniform float uNoise;
-      uniform float uSaturation;
-      uniform float uScale;
-      uniform float uHueShift;
-      uniform float uColorFreq;
-      uniform float uBloom;
-      uniform float uCenterShift;
-      uniform float uInvBaseHalf;
-      uniform float uInvHeight;
-      uniform float uMinAxis;
-      uniform float uPxScale;
-      uniform float uTimeScale;
-      uniform float uPixelSize;
-
-      vec4 tanh4(vec4 x){
-        vec4 e2x = exp(2.0*x);
-        return (e2x - 1.0) / (e2x + 1.0);
-      }
-
-      float rand(vec2 co){
-        return fract(sin(dot(co, vec2(12.9898, 78.233))) * 43758.5453123);
-      }
-
-      float sdOctaAnisoInv(vec3 p){
-        vec3 q = vec3(abs(p.x) * uInvBaseHalf, abs(p.y) * uInvHeight, abs(p.z) * uInvBaseHalf);
-        float m = q.x + q.y + q.z - 1.0;
-        return m * uMinAxis * 0.5773502691896258;
-      }
-
-      float sdPyramidUpInv(vec3 p){
-        float oct = sdOctaAnisoInv(p);
-        float halfSpace = -p.y;
-        return max(oct, halfSpace);
-      }
-
-      mat3 hueRotation(float a){
-        float c = cos(a), s = sin(a);
-        mat3 W = mat3(
-          0.299, 0.587, 0.114,
-          0.299, 0.587, 0.114,
-          0.299, 0.587, 0.114
-        );
-        mat3 U = mat3(
-           0.701, -0.587, -0.114,
-          -0.299,  0.413, -0.114,
-          -0.300, -0.588,  0.886
-        );
-        mat3 V = mat3(
-           0.168, -0.331,  0.500,
-           0.328,  0.035, -0.500,
-          -0.497,  0.296,  0.201
-        );
-        return W + U * c + V * s;
-      }
-
-      void main(){
-        vec2 fragCoord = gl_FragCoord.xy;
-        if (uPixelSize > 1.0) {
-          fragCoord = floor(fragCoord / uPixelSize) * uPixelSize + uPixelSize * 0.5;
-        }
-        vec2 f = (fragCoord - 0.5 * iResolution.xy - uOffsetPx) * uPxScale;
-
-        float z = 5.0;
-        float d = 0.0;
-
-        vec3 p;
-        vec4 o = vec4(0.0);
-
-        float centerShift = uCenterShift;
-        float cf = uColorFreq;
-
-        mat2 wob = mat2(1.0);
-        if (uUseBaseWobble == 1) {
-          float t = iTime * uTimeScale;
-          float c0 = cos(t + 0.0);
-          float c1 = cos(t + 33.0);
-          float c2 = cos(t + 11.0);
-          wob = mat2(c0, c1, c2, c0);
-        }
-
-        const int STEPS = 30;
-        for (int i = 0; i < STEPS; i++) {
-          p = vec3(f, z);
-          p.xz = p.xz * wob;
-          p = uRot * p;
-          vec3 q = p;
-          q.y += centerShift;
-          d = 0.1 + 0.2 * abs(sdPyramidUpInv(q));
-          z -= d;
-          o += (sin((p.y + z) * cf + vec4(0.0, 1.0, 2.0, 3.0)) + 1.0) / d;
-        }
-
-        o = tanh4(o * o * (uGlow * uBloom) / 1e5);
-
-        vec3 col = o.rgb;
-        float n = rand(fragCoord + vec2(iTime));
-        col += (n - 0.5) * uNoise;
-        col = clamp(col, 0.0, 1.0);
-
-        float L = dot(col, vec3(0.2126, 0.7152, 0.0722));
-        col = clamp(mix(vec3(L), col, uSaturation), 0.0, 1.0);
-        // Deepen colors: gamma curve for richer jewel tones (slightly lifted)
-        col = pow(col, vec3(1.15));
-
-        if(abs(uHueShift) > 0.0001){
-          col = clamp(hueRotation(uHueShift) * col, 0.0, 1.0);
-        }
-
-        gl_FragColor = vec4(col, o.a);
-      }
-    `;
 
     const geometry = new Triangle(gl);
     const iResBuf = new Float32Array(2);
     const offsetPxBuf = new Float32Array(2);
 
     const program = new Program(gl, {
-      vertex,
-      fragment,
+      vertex: VERTEX_SHADER,
+      fragment: FRAGMENT_SHADER,
       uniforms: {
         iResolution: { value: iResBuf },
         iTime: { value: 0 },
@@ -228,11 +99,11 @@ const Background = ({
         uInvHeight: { value: 1 / H },
         uMinAxis: { value: Math.min(BASE_HALF, H) },
         uPxScale: {
-          value: 1 / ((gl.drawingBufferHeight || 1) * 0.1 * SCALE)
+          value: 1 / ((gl.drawingBufferHeight || 1) * 0.1 * SCALE),
         },
         uTimeScale: { value: TS },
-        uPixelSize: { value: PIXEL_SIZE }
-      }
+        uPixelSize: { value: PIXEL_SIZE },
+      },
     });
     const mesh = new Mesh(gl, { geometry, program });
     const drawFrame = () => {
@@ -248,7 +119,6 @@ const Background = ({
       offsetPxBuf[0] = offX * dpr;
       offsetPxBuf[1] = offY * dpr;
       program.uniforms.uPxScale.value = 1 / ((gl.drawingBufferHeight || 1) * 0.1 * SCALE);
-      // Prevent a transient blank frame after resize-triggered buffer clears.
       drawFrame();
     };
     const ro = new ResizeObserver(resize);
@@ -256,36 +126,6 @@ const Background = ({
     resize();
 
     const rotBuf = new Float32Array(9);
-    const setMat3FromEuler = (yawY, pitchX, rollZ, out) => {
-      const cy = Math.cos(yawY),
-        sy = Math.sin(yawY);
-      const cx = Math.cos(pitchX),
-        sx = Math.sin(pitchX);
-      const cz = Math.cos(rollZ),
-        sz = Math.sin(rollZ);
-      const r00 = cy * cz + sy * sx * sz;
-      const r01 = -cy * sz + sy * sx * cz;
-      const r02 = sy * cx;
-
-      const r10 = cx * sz;
-      const r11 = cx * cz;
-      const r12 = -sx;
-
-      const r20 = -sy * cz + cy * sx * sz;
-      const r21 = sy * sz + cy * sx * cz;
-      const r22 = cy * cx;
-
-      out[0] = r00;
-      out[1] = r10;
-      out[2] = r20;
-      out[3] = r01;
-      out[4] = r11;
-      out[5] = r21;
-      out[6] = r02;
-      out[7] = r12;
-      out[8] = r22;
-      return out;
-    };
 
     const NOISE_IS_ZERO = NOISE < 1e-6;
     let raf = 0;
@@ -381,16 +221,7 @@ const Background = ({
         program.uniforms.uRot.value = setMat3FromEuler(yaw, pitch, roll, rotBuf);
         if (TS < 1e-6) continueRAF = false;
       } else {
-        rotBuf[0] = 1;
-        rotBuf[1] = 0;
-        rotBuf[2] = 0;
-        rotBuf[3] = 0;
-        rotBuf[4] = 1;
-        rotBuf[5] = 0;
-        rotBuf[6] = 0;
-        rotBuf[7] = 0;
-        rotBuf[8] = 1;
-        program.uniforms.uRot.value = rotBuf;
+        program.uniforms.uRot.value = setMat3Identity(rotBuf);
         if (TS < 1e-6) continueRAF = false;
       }
 
@@ -442,7 +273,7 @@ const Background = ({
     bloom,
     suspendWhenOffscreen,
     pixelSize,
-    saturation
+    saturation,
   ]);
 
   return <div className="background-container" ref={containerRef} />;

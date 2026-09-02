@@ -1,44 +1,44 @@
-.experience-intro {
+.timeline-summary {
   margin-bottom: 16px;
 }
 
-.experience-groups {
+.timeline-groups {
   margin-left: 0;
 }
 
-.experience-section.internships-closed {
+.timeline-section.is-collapsed {
   padding-bottom: 14px;
 }
 
-.experience-subsection {
+.timeline-subsection {
   margin-bottom: 22px;
 }
 
-.experience-subsection:last-child {
+.timeline-subsection:last-child {
   margin-bottom: 0;
 }
 
-.experience-subsection.internships-expanded {
-  animation: internshipsReveal 340ms cubic-bezier(0.16, 1, 0.3, 1) both;
+.timeline-subsection.is-expanded {
+  animation: timelineReveal 340ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-.experience-subsection.internships-expanded .experience-subsection-content {
-  animation: internshipsContentReveal 420ms cubic-bezier(0.16, 1, 0.3, 1) both;
+.timeline-subsection.is-expanded .timeline-subsection-content {
+  animation: timelineContentReveal 420ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-.experience-internships-toggle-wrap {
+.timeline-toggle-wrap {
   display: flex;
   justify-content: center;
   margin-bottom: 8px;
 }
 
-.experience-subsection-content {
+.timeline-subsection-content {
   padding-left: 14px;
   border-left: 1px solid var(--section-border);
 }
 
-.experience-subsection-title,
-.experience-toggle-button {
+.timeline-subsection-title,
+.timeline-toggle-button {
   font-size: 13px;
   font-weight: 600;
   text-transform: uppercase;
@@ -46,11 +46,11 @@
   color: var(--muted-text);
 }
 
-.experience-subsection-title {
+.timeline-subsection-title {
   margin-bottom: 12px;
 }
 
-.experience-toggle-button {
+.timeline-toggle-button {
   font-family: inherit;
   border: 0;
   background: transparent;
@@ -59,19 +59,19 @@
   white-space: nowrap;
 }
 
-.experience-toggle-button:hover {
+.timeline-toggle-button:hover {
   color: var(--muted-text);
   text-decoration: underline;
   text-underline-offset: 2px;
 }
 
-.experience-toggle-button:focus-visible {
+.timeline-toggle-button:focus-visible {
   outline: 2px solid var(--link-color);
   outline-offset: 2px;
   border-radius: 2px;
 }
 
-@keyframes internshipsReveal {
+@keyframes timelineReveal {
   from {
     opacity: 0;
     transform: translateY(-8px);
@@ -83,7 +83,7 @@
   }
 }
 
-@keyframes internshipsContentReveal {
+@keyframes timelineContentReveal {
   from {
     opacity: 0;
     transform: translateY(-4px);
@@ -96,43 +96,35 @@
 }
 
 @media (max-width: 768px) {
-  .experience-section .section-title {
-    font-size: 16px;
-  }
-
-  .experience-section.internships-closed {
+  .timeline-section.is-collapsed {
     padding-bottom: 10px;
   }
 
-  .experience-groups {
-    margin-left: 0;
-  }
-
-  .experience-subsection {
+  .timeline-subsection {
     margin-bottom: 16px;
   }
 
-  .experience-internships-toggle-wrap {
+  .timeline-toggle-wrap {
     margin-bottom: 6px;
   }
 
-  .experience-subsection-content {
+  .timeline-subsection-content {
     padding-left: 12px;
   }
 
-  .experience-subsection-title,
-  .experience-toggle-button {
+  .timeline-subsection-title,
+  .timeline-toggle-button {
     font-size: 14px;
   }
 
-  .experience-subsection-title {
+  .timeline-subsection-title {
     margin-bottom: 10px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .experience-subsection.internships-expanded,
-  .experience-subsection.internships-expanded .experience-subsection-content {
+  .timeline-subsection.is-expanded,
+  .timeline-subsection.is-expanded .timeline-subsection-content {
     animation: none;
   }
 }

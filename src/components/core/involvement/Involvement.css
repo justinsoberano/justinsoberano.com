@@ -1,9 +1,0 @@
-.involvement-intro {
-  margin-bottom: 16px;
-}
-
-@media (max-width: 768px) {
-  .involvement-section .section-title {
-    font-size: 16px;
-  }
-}

@@ -1,0 +1,33 @@
+section {
+  padding: 24px 0;
+  border-bottom: 1px solid var(--section-border);
+}
+
+.section-title {
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 16px;
+  color: var(--muted-text);
+}
+
+.section-copy {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 24px;
+}
+
+@media (max-width: 768px) {
+  section {
+    padding: 16px 0;
+  }
+
+  .section-title {
+    font-size: 16px;
+  }
+
+  .section-copy {
+    font-size: 16px;
+  }
+}
