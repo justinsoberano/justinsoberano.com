@@ -12,7 +12,6 @@ function Header() {
         </span>
       </p>
       <nav className="header-links">
-        <a href="https://data.justinsoberano.com/files/resume.pdf" target="_blank" rel="noopener noreferrer" className="header-link">Resume</a>
         <a href="https://github.com/justinsoberano" target="_blank" rel="noopener noreferrer" className="header-link">GitHub</a>
         <a href="https://linkedin.com/in/justinsoberano" target="_blank" rel="noopener noreferrer" className="header-link">LinkedIn</a>
       </nav>
