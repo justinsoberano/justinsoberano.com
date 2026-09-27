@@ -8,7 +8,16 @@ import Involvement from './components/Involvement/Involvement';
 import Projects from './components/Projects/Projects';
 import Background from './components/Background/Background';
 import useTheme from './hooks/useTheme';
+import useLocalMinutes from './hooks/useLocalMinutes';
+import { resolveBackgroundSettings } from './utils/dayPalette';
 import { DARK_BACKGROUND, LIGHT_BACKGROUND } from './config/background';
+
+function ThemedBackground() {
+  const theme = useTheme();
+  const minutes = useLocalMinutes();
+  const preset = theme === 'dark' ? DARK_BACKGROUND : LIGHT_BACKGROUND;
+  return <Background {...resolveBackgroundSettings(preset, minutes)} />;
+}
 
 const SECTIONS = [
   { key: 'header', delay: 870, render: () => <Header /> },
@@ -20,12 +29,9 @@ const SECTIONS = [
 ];
 
 function App() {
-  const theme = useTheme();
-  const backgroundProps = theme === 'dark' ? DARK_BACKGROUND : LIGHT_BACKGROUND;
-
   return (
     <div className="layout-wrapper">
-      <Background {...backgroundProps} />
+      <ThemedBackground />
       <div className="container">
         {SECTIONS.map(({ key, delay, render }) => (
           <div key={key} className="stagger-item" style={{ '--content-delay': `${delay}ms` }}>

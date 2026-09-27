@@ -30,6 +30,13 @@ export const FRAGMENT_SHADER =  `
   uniform float uPxScale;
   uniform float uTimeScale;
   uniform float uPixelSize;
+  uniform int   uUseCustomColors;
+  uniform vec3  uColor1;
+  uniform vec3  uColor2;
+  uniform vec3  uColor3;
+  uniform float uPaletteMix;
+  uniform float uBrightness;
+  uniform float uContrast;
 
   vec4 tanh4(vec4 x){
     vec4 e2x = exp(2.0*x);
@@ -116,6 +123,13 @@ export const FRAGMENT_SHADER =  `
     col += (n - 0.5) * uNoise;
     col = clamp(col, 0.0, 1.0);
 
+    if (uUseCustomColors == 1) {
+      float brightness = max(col.r, max(col.g, col.b));
+      float weight = max(col.r + col.g + col.b, 0.0001);
+      vec3 palette = (uColor1 * col.r + uColor2 * col.g + uColor3 * col.b) / weight * brightness;
+      col = mix(col, palette, uPaletteMix);
+    }
+
     float L = dot(col, vec3(0.2126, 0.7152, 0.0722));
     col = clamp(mix(vec3(L), col, uSaturation), 0.0, 1.0);
     col = pow(col, vec3(1.15));
@@ -123,6 +137,9 @@ export const FRAGMENT_SHADER =  `
     if(abs(uHueShift) > 0.0001){
       col = clamp(hueRotation(uHueShift) * col, 0.0, 1.0);
     }
+
+    col = clamp((col - 0.5) * uContrast + 0.5, 0.0, 1.0);
+    col = clamp(col * uBrightness, 0.0, 1.0);
 
     gl_FragColor = vec4(col, o.a);
   }
